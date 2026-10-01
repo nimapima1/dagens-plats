@@ -24,6 +24,12 @@ Utan Google-nyckel körs spelet i demoläge med en textledtråd i stället för 
 
 Nyckeln hamnar ändå i klientkoden och blir synlig för alla som besöker den publicerade sidan. Domänbegränsningen är det som skyddar den. Vid publicering behöver `config.local.js` läggas på webbplatsen utan att committas, till exempel genom att ladda upp den separat eller skapa den i bygget.
 
+## Publicering
+
+Sajten publiceras automatiskt till GitHub Pages (https://nimapima1.github.io/dagens-plats/) varje gång något skickas till `main`. Flödet ligger i `.github/workflows/pages.yml`.
+
+Google-nyckeln hämtas från GitHub-hemligheten `GOOGLE_MAPS_API_KEY` och skrivs till `config.local.js` under bygget. Byt nyckel med `gh secret set GOOGLE_MAPS_API_KEY` och kör sedan om flödet. Lägg också till `https://nimapima1.github.io/*` som tillåten hänvisare för nyckeln i Google Cloud.
+
 ## Testa en viss plats
 
 Lägg till `?dag=3` i adressen för att visa plats nummer 3 utan att statistiken påverkas.
