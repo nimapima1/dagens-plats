@@ -50,10 +50,13 @@
     return orderForCycle(n, cycle)[pos];
   }
 
-  // Testparametrar (statistiken påverkas inte):
+  // Testparametrar (statistiken påverkas inte). De fungerar BARA när sidan körs lokalt
+  // (localhost), och ignoreras på den publicerade sidan:
   //   ?dag=3    visar den tredje dagens plats i den blandade ordningen
   //   ?plats=3  visar plats nummer 3 i locations.js, oavsett blandning
-  var params = new URLSearchParams(location.search);
+  //   ?from=250,90  provar en annan startpunkt i Street View (avstånd i meter, väderstreck)
+  var isLocalHost = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  var params = new URLSearchParams(isLocalHost ? location.search : "");
   var testDay = parseInt(params.get("dag"), 10);
   var testPlace = parseInt(params.get("plats"), 10);
   var isTest = isFinite(testDay) || isFinite(testPlace);
@@ -146,8 +149,7 @@
     try {
       await loadGoogle(key);
       var lib = await google.maps.importLibrary("streetView");
-      // ?from=avstånd,väderstreck i adressen testar en annan startpunkt (för att finjustera locations.js)
-      var fromOverride = (new URLSearchParams(location.search).get("from") || "").split(",").map(Number);
+      var fromOverride = (params.get("from") || "").split(",").map(Number);
       var from = fromOverride.length === 2 && fromOverride.every(isFinite)
         ? { dist: fromOverride[0], bearing: fromOverride[1] } : loc.from;
       var start = destination(loc, from.dist, from.bearing);

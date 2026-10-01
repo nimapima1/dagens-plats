@@ -38,7 +38,7 @@ Om du lägger till nya platser i `locations.js` ändras den blandade ordningen f
 
 ## Testa en viss plats
 
-Statistiken påverkas inte av dessa:
+Testparametrarna fungerar bara när spelet körs lokalt (`start.bat`, adressen `localhost`). På den publicerade sidan ignoreras de. Statistiken påverkas inte av dem:
 
 - `?dag=3` visar den tredje dagens plats i den blandade ordningen.
 - `?plats=3` visar plats nummer 3 i `locations.js`, oavsett blandning.
