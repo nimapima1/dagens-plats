@@ -114,7 +114,7 @@
         location: start,
         radius: 250,
         preference: lib.StreetViewPreference ? lib.StreetViewPreference.NEAREST : undefined,
-        sources: ["outdoor"]
+        sources: ["google", "outdoor"] // bara Googles egna utomhusbilder, inga användaruppladdade eller inomhus
       });
       var p = res.data.location;
       var pos = { lat: p.latLng.lat(), lng: p.latLng.lng() };
