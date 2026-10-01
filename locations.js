@@ -62,7 +62,7 @@ window.LOCATIONS = [
   },
   {
     name: "Big Ben (Elizabeth Tower)", place: "London, Storbritannien",
-    lat: 51.50073, lng: -0.12462, from: { dist: 170, bearing: 200 },
+    lat: 51.50073, lng: -0.12462, from: { dist: 150, bearing: 100 },
     clue: "Ett gotiskt klocktorn vid parlamentet, intill en berömd flod som delar staden.",
     fact: "Tornet stod klart 1859 och döptes 2012 om till Elizabeth Tower. Själva klockan heter Big Ben."
   },
