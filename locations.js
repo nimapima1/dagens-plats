@@ -155,5 +155,77 @@ window.LOCATIONS = [
     lat: 41.00859, lng: 28.98003, from: { dist: 150, bearing: 220 },
     clue: "En väldig byggnad med en jättelik kupol som varit både kyrka och moské, i en stad som ligger i två världsdelar.",
     fact: "Byggdes som kyrka 537 under kejsar Justinianus, har varit moské och museum och är sedan 2020 åter moské."
+  },
+  {
+    name: "Lincolnmonumentet", place: "Washington D.C., USA",
+    lat: 38.88940, lng: -77.05010, from: { dist: 250, bearing: 90 },
+    clue: "Ett tempelliknande monument med en jättelik sittande staty av en president, vid en lång vattenspegel.",
+    fact: "Invigdes 1922 och har 36 kolonner, en för varje delstat i USA när Lincoln dog."
+  },
+  {
+    name: "Brooklyn Bridge", place: "New York, USA",
+    lat: 40.70607, lng: -73.99686, from: { dist: 400, bearing: 120 },
+    clue: "En gammal hängbro med spetsbågar i stenpelarna över en flod, mellan två stadsdelar i en storstad.",
+    fact: "Öppnades 1883 och var då världens längsta hängbro."
+  },
+  {
+    name: "Kristusstatyn (Cristo Redentor)", place: "Rio de Janeiro, Brasilien",
+    lat: -22.95192, lng: -43.21047, from: { dist: 80, bearing: 90 },
+    clue: "En enorm staty med utsträckta armar uppe på ett berg ovanför en stad vid havet.",
+    fact: "Statyn är 30 meter hög, utan sockeln, och invigdes 1931."
+  },
+  {
+    name: "Machu Picchu", place: "Cusco-regionen, Peru",
+    lat: -13.16333, lng: -72.54500, from: { dist: 300, bearing: 180 },
+    clue: "En forntida bergsstad med terrasser högt uppe i Anderna, byggd av ett kejsardöme.",
+    fact: "Inkastaden byggdes på 1400-talet och blev känd för omvärlden 1911."
+  },
+  {
+    name: "Atomium", place: "Bryssel, Belgien",
+    lat: 50.89497, lng: 4.34151, from: { dist: 150, bearing: 180 },
+    clue: "Nio blänkande klot sammanfogade i ett kubiskt mönster, byggt som symbol för en världsutställning.",
+    fact: "Byggdes till världsutställningen i Bryssel 1958. Formen föreställer en järnkristall förstorad 165 miljarder gånger."
+  },
+  {
+    name: "Wat Arun", place: "Bangkok, Thailand",
+    lat: 13.74370, lng: 100.48890, from: { dist: 350, bearing: 110 }, zoom: 2,
+    clue: "Ett tempel med ett högt, rikt dekorerat torn vid en bred flod i en asiatisk storstad, uppkallat efter gryningen.",
+    fact: "Templet vid Chao Phraya-floden är känt för sitt centrala torn, en prang som är cirka 70 meter hög."
+  },
+  {
+    name: "Hallgrímskirkja", place: "Reykjavik, Island",
+    lat: 64.14175, lng: -21.92661, from: { dist: 100, bearing: 300 },
+    clue: "En vit kyrka med ett högt torn och en form som ska påminna om basaltpelare, högt över en nordisk huvudstad.",
+    fact: "Byggdes 1945–1986 och är drygt 74 meter hög. Formen är inspirerad av isländska basaltpelare."
+  },
+  {
+    name: "Helsingfors domkyrka", place: "Helsingfors, Finland",
+    lat: 60.17026, lng: 24.95206, from: { dist: 100, bearing: 180 },
+    clue: "En vit klassicistisk kyrka med grön kupol högt upp på trappor vid ett stort torg i en nordisk huvudstad.",
+    fact: "Stod klar 1852 och ritades av Carl Ludvig Engel. Kyrkan ligger vid Senatstorget."
+  },
+  {
+    name: "Pantheon", place: "Rom, Italien",
+    lat: 41.89861, lng: 12.47686, from: { dist: 80, bearing: 20 },
+    clue: "Ett antikt romerskt tempel med kolonner och en enorm kupol med ett runt hål i toppen.",
+    fact: "Byggdes omkring år 126 e.Kr. under kejsar Hadrianus och har världens största oarmerade betongkupol."
+  },
+  {
+    name: "Mont-Saint-Michel", place: "Normandie, Frankrike",
+    lat: 48.63603, lng: -1.51149, from: { dist: 500, bearing: 150 },
+    clue: "En medeltida klosterö med en kyrka högst upp, omgiven av tidvatten vid en kust i norra Europa.",
+    fact: "Klostret började byggas på 900-talet och ön är världsarv sedan 1979."
+  },
+  {
+    name: "Stockholms stadshus", place: "Stockholm, Sverige",
+    lat: 59.32752, lng: 18.05413, from: { dist: 400, bearing: 125 },
+    clue: "En röd tegelbyggnad vid vattnet med ett högt torn krönt av tre kronor, där en berömd middag hålls varje år.",
+    fact: "Invigdes 1923 och har ett 106 meter högt torn. Här hålls Nobelbanketten varje år."
+  },
+  {
+    name: "Chichén Itzá", place: "Yucatán, Mexiko",
+    lat: 20.68302, lng: -88.56866, from: { dist: 150, bearing: 315 },
+    clue: "En stor stegpyramid från ett forntida indianfolk, mitt i en djungel på en halvö.",
+    fact: "Pyramiden El Castillo har fyra trappor med 91 trappsteg vardera, och med plattformen blir det 365, ett för varje dag på året."
   }
 ];
