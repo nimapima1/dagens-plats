@@ -25,10 +25,10 @@ window.LOCATIONS = [
     fact: "Stod klart år 80 e.Kr. och kunde ta uppskattningsvis 50 000 åskådare."
   },
   {
-    name: "Parthenon", place: "Aten, Grekland",
-    lat: 37.97154, lng: 23.72573, from: { dist: 180, bearing: 100 },
-    clue: "Ett marmortempel uppe på en klippa ovanför en av Europas äldsta huvudstäder, tillägnat en vishetens gudinna.",
-    fact: "Byggdes 447–432 f.Kr. på Akropolis och var ett tempel åt gudinnan Athena."
+    name: "Peterskyrkan", place: "Vatikanstaten",
+    lat: 41.90217, lng: 12.45394, from: { dist: 250, bearing: 90 },
+    clue: "En enorm renässanskupol i slutet av en lång, rak boulevard, i en liten stat som ligger inne i en annan stad.",
+    fact: "Den nuvarande kyrkan invigdes 1626 och kupolen ritades av Michelangelo."
   },
   {
     name: "Taj Mahal", place: "Agra, Indien",
@@ -55,10 +55,10 @@ window.LOCATIONS = [
     fact: "De stora stenarna restes omkring 2500 f.Kr. Syftet med monumentet är fortfarande omdiskuterat."
   },
   {
-    name: "Vasamuseet", place: "Stockholm, Sverige",
-    lat: 59.32800, lng: 18.09160, from: { dist: 200, bearing: 270 },
-    clue: "Ett museum vid vattnet i en nordisk huvudstad, byggt runt ett krigsskepp som sjönk på sin första färd.",
-    fact: "Regalskeppet Vasa sjönk på sin jungfruresa 1628 och bärgades först 1961."
+    name: "Kungliga slottet", place: "Stockholm, Sverige",
+    lat: 59.32687, lng: 18.07170, from: { dist: 300, bearing: 355 },
+    clue: "Ett stort barockslott i en gammal stadskärna på en ö, där landets monark har sin officiella residens.",
+    fact: "Det nuvarande slottet byggdes efter en brand 1697 och stod klart 1754. Det är kungens officiella residens."
   },
   {
     name: "Big Ben (Elizabeth Tower)", place: "London, Storbritannien",
