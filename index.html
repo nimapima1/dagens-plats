@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dagens Plats</title>
+  <meta name="description" content="Ett Street View per dag. Var ligger monumentet? Klicka på kartan och gissa.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Dagens Plats</h1>
+    <span id="dayLabel" class="day"></span>
+    <button id="helpBtn" class="icon-btn" aria-label="Så spelar du">?</button>
+  </header>
+
+  <main>
+    <section id="viewPane" class="pane" aria-label="Street View">
+      <div id="pano"></div>
+      <div id="demo" class="demo" hidden>
+        <p class="demo-tag" id="demoTag">Demoläge</p>
+        <p class="demo-clue" id="demoClue"></p>
+        <p class="demo-note" id="demoNote"></p>
+      </div>
+      <button id="resetView" class="float-btn" hidden>↺ Tillbaka till start</button>
+    </section>
+
+    <section id="mapPane" class="pane" aria-label="Gissningskarta">
+      <div id="map"></div>
+      <div class="bar">
+        <span id="hint">Klicka på kartan där du tror att platsen ligger.</span>
+        <button id="guessBtn" class="primary" disabled>Gissa</button>
+        <button id="showResultBtn" hidden>Visa resultat</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="result" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="resName">
+    <div class="card">
+      <button class="close" data-close aria-label="Stäng">×</button>
+      <p class="eyebrow">Rätt svar</p>
+      <h2 id="resName"></h2>
+      <p id="resPlace" class="place"></p>
+      <div class="score-row">
+        <div><span id="resDist" class="big"></span><span class="label">från rätt plats</span></div>
+        <div><span id="resScore" class="big"></span><span class="label">av 5 000 poäng</span></div>
+      </div>
+      <p id="resFact" class="fact"></p>
+      <div class="stats">
+        <div><b id="stPlayed">0</b><span>Spelade</span></div>
+        <div><b id="stAvg">0</b><span>Snittpoäng</span></div>
+        <div><b id="stStreak">0</b><span>Serie</span></div>
+        <div><b id="stBest">0</b><span>Bästa serie</span></div>
+      </div>
+      <div class="actions">
+        <button id="shareBtn" class="primary">Dela resultat</button>
+        <button data-close>Visa kartan</button>
+      </div>
+      <p id="nextIn" class="next"></p>
+    </div>
+  </div>
+
+  <div id="help" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <div class="card">
+      <button class="close" data-close aria-label="Stäng">×</button>
+      <h2 id="helpTitle">Så spelar du</h2>
+      <ol class="howto">
+        <li>Varje dag visas en ny plats i Street View: ett monument, en byggnad eller en historisk plats.</li>
+        <li>Titta dig runt för ledtrådar: språk, skyltar, arkitektur, vegetation.</li>
+        <li>Klicka på kartan där du tror att platsen ligger och tryck <b>Gissa</b>.</li>
+        <li>Du får poäng efter hur nära du hamnar. Max är 5 000. Du har bara en gissning per dag.</li>
+      </ol>
+      <div class="actions"><button class="primary" data-close>Kör!</button></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="config.js"></script>
+  <script src="locations.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
