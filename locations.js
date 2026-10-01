@@ -227,5 +227,77 @@ window.LOCATIONS = [
     lat: 20.68302, lng: -88.56866, from: { dist: 150, bearing: 315 },
     clue: "En stor stegpyramid från ett forntida indianfolk, mitt i en djungel på en halvö.",
     fact: "Pyramiden El Castillo har fyra trappor med 91 trappsteg vardera, och med plattformen blir det 365, ett för varje dag på året."
+  },
+  {
+    name: "Obelisken", place: "Buenos Aires, Argentina",
+    lat: -34.60371, lng: -58.38157, from: { dist: 150, bearing: 0 }, zoom: 1,
+    clue: "En smal vit stenobelisk mitt på en av världens bredaste avenyer i en sydamerikansk huvudstad.",
+    fact: "Byggdes 1936 för att fira stadens 400-årsjubileum. Den är 67,5 meter hög."
+  },
+  {
+    name: "Gateway of India", place: "Mumbai, Indien",
+    lat: 18.92200, lng: 72.83472, from: { dist: 100, bearing: 270 },
+    clue: "En stor stenbåge vid en hamn, uppförd för att fira ett kungabesök.",
+    fact: "Byggdes 1911–1924 för att minnas ett kungligt besök och står vid hamnen i Mumbai."
+  },
+  {
+    name: "India Gate", place: "New Delhi, Indien",
+    lat: 28.61293, lng: 77.22951, from: { dist: 250, bearing: 270 }, zoom: 1,
+    clue: "En stor triumfbåge vid en bred ceremoniell allé, byggd som krigsminnesmärke.",
+    fact: "Invigdes 1931 och är 42 meter högt. Det minns cirka 70 000 indiska soldater som stupade i första världskriget."
+  },
+  {
+    name: "Gwanghwamun", place: "Seoul, Sydkorea",
+    lat: 37.57595, lng: 126.97688, from: { dist: 150, bearing: 180 }, zoom: 1,
+    clue: "Huvudporten till ett kungligt palats från en gammal dynasti, med höga berg bakom, i en storstad i Östasien.",
+    fact: "Porten är huvudingång till Gyeongbokgung-palatset, som byggdes 1395 under Joseondynastin."
+  },
+  {
+    name: "Petronas Towers", place: "Kuala Lumpur, Malaysia",
+    lat: 3.15785, lng: 101.71163, from: { dist: 250, bearing: 90 },
+    clue: "Två smala skyskrapor förbundna med en bro högt upp, i en asiatisk huvudstad.",
+    fact: "Tornen är 452 meter höga och var världens högsta byggnader 1998–2004."
+  },
+  {
+    name: "Marina Bay Sands", place: "Singapore",
+    lat: 1.28368, lng: 103.86071, from: { dist: 700, bearing: 243 },
+    clue: "Tre höga hotelltorn med ett stort skeppsliknande tak med en pool, vid en vik i en asiatisk stadsstat.",
+    fact: "Öppnade 2010 och består av tre torn som bär upp ett skeppsformat Skypark med en pool."
+  },
+  {
+    name: "Sydney Harbour Bridge", place: "Sydney, Australien",
+    lat: -33.85230, lng: 151.21080, from: { dist: 400, bearing: 260 },
+    clue: "En stor stålbåge över en hamn, med en berömd operabyggnad i närheten.",
+    fact: "Öppnades 1932 och kallas Klädhängaren på grund av sin form."
+  },
+  {
+    name: "CN Tower", place: "Toronto, Kanada",
+    lat: 43.64255, lng: -79.38706, from: { dist: 300, bearing: 90 },
+    clue: "Ett mycket högt betongtorn med en utsiktsplattform, vid en stor sjö i Nordamerika.",
+    fact: "Stod klart 1976 och var världens högsta fristående byggnad i över 30 år."
+  },
+  {
+    name: "Space Needle", place: "Seattle, USA",
+    lat: 47.62058, lng: -122.34928, from: { dist: 250, bearing: 200 },
+    clue: "Ett torn som ser ut som en flygande tefat på en pelare, byggt till en världsutställning på 1960-talet.",
+    fact: "Byggdes till världsutställningen 1962 och är 184 meter högt."
+  },
+  {
+    name: "Kapitolium (US Capitol)", place: "Washington D.C., USA",
+    lat: 38.88977, lng: -77.00905, from: { dist: 350, bearing: 270 },
+    clue: "En vit kupolbyggnad på en kulle där landets lagstiftande församling möts.",
+    fact: "Byggdes i omgångar från 1793, och den nuvarande gjutjärnskupolen stod klar 1866."
+  },
+  {
+    name: "Niagarafallen", place: "Niagara Falls, Kanada och USA",
+    lat: 43.07966, lng: -79.07475, from: { dist: 200, bearing: 180 },
+    clue: "Enorma vattenfall på en gräns mellan två länder, där en bred flod störtar ner över en hästskoformad kant.",
+    fact: "Horseshoe Falls är det största av de tre vattenfallen och ligger på gränsen mellan Kanada och USA."
+  },
+  {
+    name: "Taffelberget", place: "Kapstaden, Sydafrika",
+    lat: -33.96280, lng: 18.40980, from: { dist: 4000, bearing: 345 },
+    clue: "Ett bergsmassiv med platt topp som reser sig rakt ovanför en stad vid havet på en sydlig kontinent.",
+    fact: "Berget är cirka 1 085 meter högt och är bakgrund till Kapstaden, ett av Afrikas mest kända landmärken."
   }
 ];
