@@ -6,6 +6,7 @@
 //  from        : var Street View startar, relativt platsen.
 //                dist = meter från platsen, bearing = väderstreck (0=norr, 90=öst, 180=söder, 270=väst).
 //                Spelet söker upp närmaste Street View-bild och riktar blicken mot platsen.
+//  zoom        : (valfritt) startzoom i Street View, 0 = ingen. Används när monumentet ligger långt bort.
 //  clue        : ledtråd som bara visas i demoläget (utan Google-nyckel)
 //  fact        : kort faktatext som visas efter gissningen
 //
@@ -19,7 +20,7 @@ window.LOCATIONS = [
   },
   {
     name: "Colosseum", place: "Rom, Italien",
-    lat: 41.89021, lng: 12.49223, from: { dist: 160, bearing: 200 },
+    lat: 41.89021, lng: 12.49223, from: { dist: 180, bearing: 220 },
     clue: "En enorm oval arena från antiken där gladiatorer en gång kämpade inför tiotusentals åskådare.",
     fact: "Stod klart år 80 e.Kr. och kunde ta uppskattningsvis 50 000 åskådare."
   },
@@ -43,13 +44,13 @@ window.LOCATIONS = [
   },
   {
     name: "Sagrada Família", place: "Barcelona, Spanien",
-    lat: 41.40364, lng: 2.17436, from: { dist: 160, bearing: 160 },
+    lat: 41.40364, lng: 2.17436, from: { dist: 170, bearing: 90 },
     clue: "En basilika med spetsiga torn i organiska former, ritad av en berömd arkitekt och byggd under mer än ett sekel.",
     fact: "Bygget började 1882 och Antoni Gaudí arbetade med kyrkan fram till sin död 1926."
   },
   {
     name: "Stonehenge", place: "Wiltshire, England",
-    lat: 51.17886, lng: -1.82621, from: { dist: 350, bearing: 200 },
+    lat: 51.17886, lng: -1.82621, from: { dist: 200, bearing: 100 }, zoom: 2,
     clue: "En ring av enorma stenblock på en öppen slätt, rest för flera tusen år sedan av okänd anledning.",
     fact: "De stora stenarna restes omkring 2500 f.Kr. Syftet med monumentet är fortfarande omdiskuterat."
   },
@@ -67,7 +68,7 @@ window.LOCATIONS = [
   },
   {
     name: "Operahuset", place: "Sydney, Australien",
-    lat: -33.85679, lng: 151.21526, from: { dist: 350, bearing: 220 },
+    lat: -33.85679, lng: 151.21526, from: { dist: 280, bearing: 240 },
     clue: "En byggnad med segelliknande skal på en udde i en stor hamn på södra halvklotet.",
     fact: "Ritades av Jørn Utzon, invigdes 1973 och blev världsarv 2007."
   },
@@ -79,7 +80,7 @@ window.LOCATIONS = [
   },
   {
     name: "Uppsala domkyrka", place: "Uppsala, Sverige",
-    lat: 59.85797, lng: 17.63271, from: { dist: 130, bearing: 200 },
+    lat: 59.85797, lng: 17.63271, from: { dist: 180, bearing: 260 },
     clue: "En tegelkyrka i en gammal universitetsstad, med torn som tillhör de högsta i sitt land.",
     fact: "Nordens största kyrka. Tornen är drygt 118 meter höga och bygget påbörjades på 1200-talet."
   }

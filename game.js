@@ -109,7 +109,11 @@
     try {
       await loadGoogle(key);
       var lib = await google.maps.importLibrary("streetView");
-      var start = destination(loc, loc.from.dist, loc.from.bearing);
+      // ?from=avstånd,väderstreck i adressen testar en annan startpunkt (för att finjustera locations.js)
+      var fromOverride = (new URLSearchParams(location.search).get("from") || "").split(",").map(Number);
+      var from = fromOverride.length === 2 && fromOverride.every(isFinite)
+        ? { dist: fromOverride[0], bearing: fromOverride[1] } : loc.from;
+      var start = destination(loc, from.dist, from.bearing);
       var res = await new lib.StreetViewService().getPanorama({
         location: start,
         radius: 250,
@@ -122,7 +126,7 @@
       var pano = new lib.StreetViewPanorama($("pano"), {
         pano: p.pano,
         pov: pov,
-        zoom: 0,
+        zoom: loc.zoom || 0,
         addressControl: false,   // dölj adress/plats-text
         showRoadLabels: false,   // dölj gatunamn
         fullscreenControl: false,
@@ -137,7 +141,7 @@
       $("resetView").onclick = function () {
         pano.setPano(p.pano);
         pano.setPov(pov);
-        pano.setZoom(0);
+        pano.setZoom(loc.zoom || 0);
       };
     } catch (e) {
       showDemo("Hittade ingen Street View-bild vid platsen, eller Google kunde inte nås (" + (e && e.message ? e.message : "okänt fel") + ").", "Ingen bild");
