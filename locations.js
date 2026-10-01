@@ -83,5 +83,77 @@ window.LOCATIONS = [
     lat: 59.85797, lng: 17.63271, from: { dist: 180, bearing: 260 },
     clue: "En tegelkyrka i en gammal universitetsstad, med torn som tillhör de högsta i sitt land.",
     fact: "Nordens största kyrka. Tornen är drygt 118 meter höga och bygget påbörjades på 1200-talet."
+  },
+  {
+    name: "Triumfbågen", place: "Paris, Frankrike",
+    lat: 48.87379, lng: 2.29504, from: { dist: 120, bearing: 60 },
+    clue: "En enorm triumfbåge mitt i en stor rondell där tolv avenyer möts.",
+    fact: "Beställdes av Napoleon 1806 och stod klart 1836. Under valvet ligger den okände soldatens grav."
+  },
+  {
+    name: "Tower Bridge", place: "London, Storbritannien",
+    lat: 51.50551, lng: -0.07535, from: { dist: 150, bearing: 190 },
+    clue: "En bro med två gotiska torn över en berömd flod. Den förväxlas ofta med en annan bro i samma stad.",
+    fact: "Öppnades 1894. Mittdelen kan fällas upp så att stora fartyg kan passera."
+  },
+  {
+    name: "Edinburgh Castle", place: "Edinburgh, Skottland",
+    lat: 55.94861, lng: -3.19999, from: { dist: 120, bearing: 90 },
+    clue: "En medeltida fästning på en vulkanklippa som tornar upp sig över en skotsk huvudstad.",
+    fact: "Slottet ligger på den utdöda vulkanen Castle Rock. Den äldsta bevarade delen, St Margaret's Chapel, är från 1100-talet."
+  },
+  {
+    name: "Lutande tornet i Pisa", place: "Pisa, Italien",
+    lat: 43.72297, lng: 10.39656, from: { dist: 150, bearing: 270 },
+    clue: "Ett vitt marmortorn som lutar kraftigt, på en gräsmatta bredvid en katedral.",
+    fact: "Bygget började 1173 och tornet började luta redan under byggtiden. Det är klocktorn till stadens katedral."
+  },
+  {
+    name: "Markuskyrkan", place: "Venedig, Italien",
+    lat: 45.43413, lng: 12.33890, from: { dist: 100, bearing: 280 },
+    clue: "En kyrka med guldmosaiker och flera kupoler vid ett stort torg i en stad byggd på vatten.",
+    fact: "Basilikan invigdes 1094 och är känd för sina bysantinska kupoler och guldmosaiker."
+  },
+  {
+    name: "Parlamentet", place: "Budapest, Ungern",
+    lat: 47.50728, lng: 19.04597, from: { dist: 400, bearing: 270 }, zoom: 1,
+    clue: "En enorm nygotisk byggnad med kupol längs en flod som delar huvudstaden i två delar.",
+    fact: "Byggdes 1885–1904 vid Donau i nygotisk stil och är Ungerns största byggnad."
+  },
+  {
+    name: "Pyramiderna i Giza", place: "Giza, Egypten",
+    lat: 29.97925, lng: 31.13418, from: { dist: 400, bearing: 150 },
+    clue: "Enorma stenpyramider i en öken, intill en storstad vid en berömd flod.",
+    fact: "Cheopspyramiden byggdes för över 4 500 år sedan och var världens högsta byggnad i ungefär 3 800 år."
+  },
+  {
+    name: "Angkor Wat", place: "Siem Reap, Kambodja",
+    lat: 13.41250, lng: 103.86699, from: { dist: 250, bearing: 280 },
+    clue: "Ett enormt tempel med fem torn formade som lotusknoppar, omgivet av en vallgrav i en tropisk djungel.",
+    fact: "Byggdes på 1100-talet som hinduiskt tempel och räknas som världens största religiösa byggnad."
+  },
+  {
+    name: "Golden Gate Bridge", place: "San Francisco, USA",
+    lat: 37.81990, lng: -122.47830, from: { dist: 450, bearing: 160 },
+    clue: "En röd hängbro över ett sund, ofta insvept i dimma, vid en kuststad på västkusten.",
+    fact: "Invigdes 1937 och var då världens längsta hängbro."
+  },
+  {
+    name: "Kölner Dom", place: "Köln, Tyskland",
+    lat: 50.94131, lng: 6.95813, from: { dist: 150, bearing: 180 },
+    clue: "En gotisk katedral med två smala torn vid en stor flod. Bygget tog över 600 år.",
+    fact: "Bygget började 1248 och blev klart först 1880. Domen är världsarv sedan 1996."
+  },
+  {
+    name: "Burj Khalifa", place: "Dubai, Förenade Arabemiraten",
+    lat: 25.19720, lng: 55.27438, from: { dist: 300, bearing: 150 },
+    clue: "En smal glasskrapa som är den högsta byggnaden i världen, i en stad i öknen.",
+    fact: "Invigdes 2010 och är med sina 828 meter världens högsta byggnad."
+  },
+  {
+    name: "Hagia Sofia", place: "Istanbul, Turkiet",
+    lat: 41.00859, lng: 28.98003, from: { dist: 150, bearing: 220 },
+    clue: "En väldig byggnad med en jättelik kupol som varit både kyrka och moské, i en stad som ligger i två världsdelar.",
+    fact: "Byggdes som kyrka 537 under kejsar Justinianus, har varit moské och museum och är sedan 2020 åter moské."
   }
 ];
