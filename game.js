@@ -19,11 +19,48 @@
   var sp = (cfg.START_DATE || "2026-10-01").split("-").map(Number);
   var START = utcDay(sp[0], sp[1] - 1, sp[2]);
 
-  // ?dag=3 visar plats nummer 3 utan att röra statistiken (för testning)
-  var testDay = parseInt(new URLSearchParams(location.search).get("dag"), 10);
-  var isTest = isFinite(testDay);
-  var dayNumber = isTest ? testDay : Math.max(1, todayIndex() - START + 1);
-  var loc = LOCS[(((dayNumber - 1) % LOCS.length) + LOCS.length) % LOCS.length];
+  // Ordningen blandas med ett fast frö (SHUFFLE_SEED i config.js), så att alla spelare får samma
+  // plats samma dag. Ingen plats upprepas förrän hela listan har visats, sedan blandas den om.
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function orderForCycle(n, cycle) {
+    var seed = cfg.SHUFFLE_SEED === undefined ? 2026 : cfg.SHUFFLE_SEED;
+    var idx = [], i;
+    for (i = 0; i < n; i++) idx.push(i);
+    var rnd = mulberry32(seed + cycle * 7919);
+    for (i = n - 1; i > 0; i--) {
+      var j = Math.floor(rnd() * (i + 1)), tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp;
+    }
+    // Samma plats får inte komma två dagar i rad när listan börjar om
+    if (cycle > 0 && n > 1) {
+      var prevLast = orderForCycle(n, cycle - 1)[n - 1];
+      if (idx[0] === prevLast) { var t = idx[0]; idx[0] = idx[1]; idx[1] = t; }
+    }
+    return idx;
+  }
+  function locationIndexForDay(day) {
+    var n = LOCS.length, d = day - 1;
+    var cycle = Math.floor(d / n), pos = ((d % n) + n) % n;
+    return orderForCycle(n, cycle)[pos];
+  }
+
+  // Testparametrar (statistiken påverkas inte):
+  //   ?dag=3    visar den tredje dagens plats i den blandade ordningen
+  //   ?plats=3  visar plats nummer 3 i locations.js, oavsett blandning
+  var params = new URLSearchParams(location.search);
+  var testDay = parseInt(params.get("dag"), 10);
+  var testPlace = parseInt(params.get("plats"), 10);
+  var isTest = isFinite(testDay) || isFinite(testPlace);
+  var dayNumber = isFinite(testDay) ? testDay : (isTest ? 1 : Math.max(1, todayIndex() - START + 1));
+  var loc = isFinite(testPlace)
+    ? LOCS[(((testPlace - 1) % LOCS.length) + LOCS.length) % LOCS.length]
+    : LOCS[locationIndexForDay(dayNumber)];
 
   // ---------- Sparad data ----------
 

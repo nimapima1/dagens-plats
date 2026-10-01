@@ -30,9 +30,19 @@ Sajten publiceras automatiskt till GitHub Pages (https://nimapima1.github.io/dag
 
 Google-nyckeln hämtas från GitHub-hemligheten `GOOGLE_MAPS_API_KEY` och skrivs till `config.local.js` under bygget. Byt nyckel med `gh secret set GOOGLE_MAPS_API_KEY` och kör sedan om flödet. Lägg också till `https://nimapima1.github.io/*` som tillåten hänvisare för nyckeln i Google Cloud.
 
+## Ordning på platserna
+
+Platserna visas i en blandad ordning som är lika för alla spelare. Ordningen bestäms av `SHUFFLE_SEED` i `config.js`. Ingen plats upprepas förrän hela listan har visats, och sedan blandas den om. Ändra inte fröet efter lansering, då byter alla kommande dagar plats. Sätt `START_DATE` till lanseringsdagen.
+
+Om du lägger till nya platser i `locations.js` ändras den blandade ordningen för alla dagar som inte hunnit visas. Gör det därför helst före lansering.
+
 ## Testa en viss plats
 
-Lägg till `?dag=3` i adressen för att visa plats nummer 3 utan att statistiken påverkas.
+Statistiken påverkas inte av dessa:
+
+- `?dag=3` visar den tredje dagens plats i den blandade ordningen.
+- `?plats=3` visar plats nummer 3 i `locations.js`, oavsett blandning.
+- `?from=250,90` (avstånd i meter, väderstreck i grader) provar en annan startpunkt i Street View.
 
 ## Tekniker
 
