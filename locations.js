@@ -299,5 +299,85 @@ window.LOCATIONS = [
     lat: -33.96280, lng: 18.40980, from: { dist: 4000, bearing: 345 },
     clue: "Ett bergsmassiv med platt topp som reser sig rakt ovanför en stad vid havet på en sydlig kontinent.",
     fact: "Berget är cirka 1 085 meter högt och är bakgrund till Kapstaden, ett av Afrikas mest kända landmärken."
+  },
+
+  // ---- Nya platser för femledtrådsspelet (svåra ledtrådar) ----
+  {
+    name: "Ales stenar", place: "Kåseberga, Sverige",
+    lat: 55.38278, lng: 14.05611, from: { dist: 300, bearing: 200 },
+    clue: "En skeppsformad ring av stora stenar på en kulle ovanför en strand vid ett inlandshav.",
+    fact: "Skeppssättningen har 59 stenar och uppskattas vara ungefär 1 400 år gammal."
+  },
+  {
+    name: "Skogskyrkogården", place: "Stockholm, Sverige",
+    lat: 59.27556, lng: 18.09944, from: { dist: 200, bearing: 0 },
+    clue: "En begravningsplats i en tallskog, ritad av två arkitekter, med en lång stig mot ett kors.",
+    fact: "Ritades av Gunnar Asplund och Sigurd Lewerentz och är världsarv sedan 1994. Greta Garbo är begravd här."
+  },
+  {
+    name: "Hôtel d'Alsace", place: "Paris, Frankrike",
+    lat: 48.85634, lng: 2.33603, from: { dist: 40, bearing: 90 },
+    clue: "Ett litet hotell på en smal gata där en irländsk författare dog i sin sista sjukdom.",
+    fact: "Här dog författaren Oscar Wilde 1900. Hotellet heter numera L'Hôtel och ligger i Saint-Germain-des-Prés."
+  },
+  {
+    name: "Pont du Gard", place: "Gard, Frankrike",
+    lat: 43.94722, lng: 4.53500, from: { dist: 150, bearing: 200 },
+    clue: "En enorm romersk stenbro i tre våningar över en flod, byggd för att leda vatten.",
+    fact: "Akvedukten byggdes under första århundradet e.Kr., är cirka 49 meter hög och är världsarv sedan 1985."
+  },
+  {
+    name: "Trulli i Alberobello", place: "Apulien, Italien",
+    lat: 40.78250, lng: 17.23800, from: { dist: 100, bearing: 270 },
+    clue: "En stad full av vita stenhus med koniska tak, byggda utan murbruk.",
+    fact: "Trullihusen har koniska tak av torrmurad sten. De finns i Apulien och Alberobello är världsarv sedan 1996."
+  },
+  {
+    name: "Piazza del Campo", place: "Siena, Italien",
+    lat: 43.31838, lng: 11.33153, from: { dist: 60, bearing: 0 },
+    clue: "Ett skalformat torg i en medeltida stad, där en hästkapplöpning hålls varje sommar.",
+    fact: "Torget i Siena är format som ett skal. Här hålls hästkapplöpningen Palio två gånger varje sommar."
+  },
+  {
+    name: "Hōryū-ji", place: "Nara, Japan",
+    lat: 34.61444, lng: 135.73444, from: { dist: 100, bearing: 180 },
+    clue: "Ett buddhistiskt tempelområde med några av världens äldsta bevarade trähus, grundat på 600-talet.",
+    fact: "Templet grundades år 607 och har några av världens äldsta trähus. Det är världsarv sedan 1993."
+  },
+  {
+    name: "Shirakawa-go", place: "Gifu, Japan",
+    lat: 36.25744, lng: 136.90611, from: { dist: 300, bearing: 0 },
+    clue: "En bergsby med gårdar vars branta halmtak ser ut som två händer som ber.",
+    fact: "Byn är känd för sina gårdar i gassho-zukuri-stil, med branta halmtak. Den är världsarv sedan 1995."
+  },
+  {
+    name: "Atombombskupolen (Genbaku Dome)", place: "Hiroshima, Japan",
+    lat: 34.39556, lng: 132.45361, from: { dist: 60, bearing: 270 },
+    clue: "Ruinen av en kupolbyggnad som står kvar som minnesmärke i en stads fredspark.",
+    fact: "Byggnaden stod nära den plats där atombomben exploderade över Hiroshima 6 augusti 1945. Världsarv sedan 1996."
+  },
+  {
+    name: "Tokyo Skytree", place: "Tokyo, Japan",
+    lat: 35.71006, lng: 139.81070, from: { dist: 700, bearing: 300 }, pitch: 35,
+    clue: "Ett mycket högt sändartorn med glasplattformar som är världens högsta fristående torn.",
+    fact: "Öppnade 2012 och är 634 meter högt, världens högsta fristående torn."
+  },
+  {
+    name: "Shibuya-övergången", place: "Tokyo, Japan",
+    lat: 35.65950, lng: 139.70070, from: { dist: 60, bearing: 200 }, pitch: 10,
+    clue: "En enorm gångkorsning där alla bilar stannar samtidigt och hundratals människor går över på en gång.",
+    fact: "Shibuya Scramble Crossing är en av världens mest trafikerade övergångar. Flera tusen människor korsar den vid varje grönt ljus."
+  },
+  {
+    name: "Lorraine Motel", place: "Memphis, USA",
+    lat: 35.13488, lng: -90.05803, from: { dist: 60, bearing: 180 },
+    clue: "Ett före detta motell med ett balkongfönster i en stad vid en stor flod, nu museum.",
+    fact: "Här sköts Martin Luther King Jr. den 4 april 1968. Motellet är numera National Civil Rights Museum."
+  },
+  {
+    name: "Hoover Dam", place: "Nevada och Arizona, USA",
+    lat: 36.01604, lng: -114.73708, from: { dist: 150, bearing: 330 },
+    clue: "En enorm betongdamm i en kanjon som tämjer en stor flod i en öken.",
+    fact: "Byggdes 1931–1936 i Black Canyon vid Coloradofloden och är 221 meter hög."
   }
 ];

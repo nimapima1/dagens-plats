@@ -2,14 +2,17 @@
   "use strict";
 
   var cfg = window.GAME_CONFIG || {};
-  var LOCS = window.LOCATIONS;
-  var STORAGE_KEY = "dagensplats.v1";
-  var MAX_SCORE = 5000;
-  var SCALE_KM = 2000; // högre värde = mer förlåtande poängsättning
+  var LOCS = window.LOCATIONS || [];
+  var PUZZLES = window.PUZZLES || [];
+  var CODES = window.COUNTRY_CODES || {};
+  var STORAGE_KEY = "dagensplats.v2";
+  var POINTS = [5000, 4000, 3000, 2000, 1000]; // poäng om landet hittas på ledtråd 1..5
+  var ATLAS_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json";
 
   function $(id) { return document.getElementById(id); }
+  function fmtNum(n) { return Math.round(n).toLocaleString("sv-SE"); }
 
-  // ---------- Vilken dag / vilken plats? ----------
+  // ---------- Vilken dag / vilket pussel? ----------
 
   function utcDay(y, m, d) { return Math.floor(Date.UTC(y, m, d) / 86400000); }
   function todayIndex() {
@@ -20,7 +23,7 @@
   var START = utcDay(sp[0], sp[1] - 1, sp[2]);
 
   // Ordningen blandas med ett fast frö (SHUFFLE_SEED i config.js), så att alla spelare får samma
-  // plats samma dag. Ingen plats upprepas förrän hela listan har visats, sedan blandas den om.
+  // pussel samma dag. Inget pussel upprepas förrän alla har visats, sedan blandas listan om.
   function mulberry32(a) {
     return function () {
       a |= 0; a = (a + 0x6D2B79F5) | 0;
@@ -37,60 +40,108 @@
     for (i = n - 1; i > 0; i--) {
       var j = Math.floor(rnd() * (i + 1)), tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp;
     }
-    // Samma plats får inte komma två dagar i rad när listan börjar om
+    // Samma pussel får inte komma två dagar i rad när listan börjar om
     if (cycle > 0 && n > 1) {
       var prevLast = orderForCycle(n, cycle - 1)[n - 1];
       if (idx[0] === prevLast) { var t = idx[0]; idx[0] = idx[1]; idx[1] = t; }
     }
     return idx;
   }
-  function locationIndexForDay(day) {
-    var n = LOCS.length, d = day - 1;
+  function puzzleIndexForDay(day) {
+    var n = PUZZLES.length, d = day - 1;
     var cycle = Math.floor(d / n), pos = ((d % n) + n) % n;
     return orderForCycle(n, cycle)[pos];
   }
 
   // Testparametrar (statistiken påverkas inte). De fungerar BARA när sidan körs lokalt
   // (localhost), och ignoreras på den publicerade sidan:
-  //   ?dag=3    visar den tredje dagens plats i den blandade ordningen
-  //   ?plats=3  visar plats nummer 3 i locations.js, oavsett blandning
-  //   ?from=250,90  provar en annan startpunkt i Street View (avstånd i meter, väderstreck)
+  //   ?dag=3       visar den tredje dagens pussel i den blandade ordningen
+  //   ?plats=3     visar pussel nummer 3 i puzzles.js, oavsett blandning
+  //   ?bild=12     visar plats nummer 12 i locations.js som en enda bild (för att finjustera vinklar)
+  //   ?ledtrad=3   börjar på ledtråd 3
+  //   ?from=250,90 provar en annan startpunkt (avstånd i meter, väderstreck) för alla bilder
+  //   ?pitch=35    lutar blicken uppåt (grader) för alla bilder
   var isLocalHost = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
   var params = new URLSearchParams(isLocalHost ? location.search : "");
   var testDay = parseInt(params.get("dag"), 10);
   var testPlace = parseInt(params.get("plats"), 10);
-  var isTest = isFinite(testDay) || isFinite(testPlace);
-  var dayNumber = isFinite(testDay) ? testDay : (isTest ? 1 : Math.max(1, todayIndex() - START + 1));
-  var loc = isFinite(testPlace)
-    ? LOCS[(((testPlace - 1) % LOCS.length) + LOCS.length) % LOCS.length]
-    : LOCS[locationIndexForDay(dayNumber)];
+  var testImage = parseInt(params.get("bild"), 10);
+  var testClue = parseInt(params.get("ledtrad"), 10);
+  var isTest = isFinite(testDay) || isFinite(testPlace) || isFinite(testImage);
+
+  function findLoc(name) {
+    for (var i = 0; i < LOCS.length; i++) if (LOCS[i].name === name) return LOCS[i];
+    return null;
+  }
+
+  var puzzle, clueLocs, dayNumber;
+  if (isFinite(testImage)) {
+    var one = LOCS[(((testImage - 1) % LOCS.length) + LOCS.length) % LOCS.length];
+    puzzle = { country: "000" };
+    clueLocs = [one, one, one, one, one];
+    dayNumber = 1;
+  } else {
+    dayNumber = isFinite(testDay) ? testDay : (isTest ? 1 : Math.max(1, todayIndex() - START + 1));
+    puzzle = isFinite(testPlace)
+      ? PUZZLES[(((testPlace - 1) % PUZZLES.length) + PUZZLES.length) % PUZZLES.length]
+      : PUZZLES[puzzleIndexForDay(dayNumber)];
+    clueLocs = puzzle.clues.map(findLoc);
+    clueLocs.forEach(function (l, i) { if (!l) console.error("Hittar inte platsen:", puzzle.clues[i]); });
+  }
 
   // ---------- Sparad data ----------
 
   function load() {
     try {
       var s = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      if (s && s.stats && s.results) return s;
+      if (s && s.stats && s.days) return s;
     } catch (e) {}
-    return { seenHelp: false, stats: { played: 0, totalScore: 0, streak: 0, bestStreak: 0, lastDay: 0 }, results: {} };
+    return {
+      seenHelp: false,
+      stats: { played: 0, totalScore: 0, streak: 0, bestStreak: 0, lastWinDay: 0 },
+      days: {}
+    };
   }
-  function save(data) {
+  function save() {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
   }
   var data = load();
+
+  function freshDay() { return { clue: 1, history: [], done: false, correct: false, score: 0 }; }
+  var state = (!isTest && data.days[dayNumber]) || freshDay();
+  if (isTest && isFinite(testClue)) state.clue = Math.max(1, Math.min(5, testClue));
+  var viewClue = state.done ? 5 : state.clue;
+  var selected = null; // { id, name } för det land spelaren markerat
+
+  function persist() {
+    if (isTest) return;
+    data.days[dayNumber] = state;
+    save();
+  }
+  function historyFor(clue) {
+    for (var i = 0; i < state.history.length; i++) if (state.history[i].clue === clue) return state.history[i];
+    return null;
+  }
+  function wrongIds() {
+    return state.history.filter(function (h) { return h.type === "wrong"; }).map(function (h) { return h.id; });
+  }
+
+  // ---------- Landsnamn ----------
+
+  var dnSv = null;
+  try { dnSv = new Intl.DisplayNames(["sv"], { type: "region" }); } catch (e) {}
+  function countryName(id, fallback) {
+    var code = CODES[String(id).padStart(3, "0")];
+    if (code && dnSv) {
+      try { var n = dnSv.of(code); if (n && n !== code) return n; } catch (e) {}
+    }
+    return fallback || String(id);
+  }
 
   // ---------- Geometri ----------
 
   function rad(d) { return d * Math.PI / 180; }
   function deg(r) { return r * 180 / Math.PI; }
-
-  function haversineKm(a, b) {
-    var R = 6371;
-    var dLat = rad(b.lat - a.lat), dLng = rad(b.lng - a.lng);
-    var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
-    return 2 * R * Math.asin(Math.sqrt(h));
-  }
   function bearing(a, b) {
     var f1 = rad(a.lat), f2 = rad(b.lat), dl = rad(b.lng - a.lng);
     var y = Math.sin(dl) * Math.cos(f2);
@@ -103,23 +154,16 @@
     var l2 = l1 + Math.atan2(Math.sin(t) * Math.sin(d) * Math.cos(f1), Math.cos(d) - Math.sin(f1) * Math.sin(f2));
     return { lat: deg(f2), lng: deg(l2) };
   }
-  function scoreFor(km) {
-    if (km < 0.2) return MAX_SCORE;
-    return Math.round(MAX_SCORE * Math.exp(-km / SCALE_KM));
-  }
-  function fmtDist(km) {
-    if (km < 1) return Math.round(km * 1000) + " m";
-    return Math.round(km).toLocaleString("sv-SE") + " km";
-  }
-  function fmtNum(n) { return Math.round(n).toLocaleString("sv-SE"); }
 
   // ---------- Street View ----------
 
-  function showDemo(note, tag) {
+  var gm = { lib: null, svc: null, pano: null, req: 0, cur: null };
+
+  function showDemo(note, tag, l) {
     $("pano").hidden = true;
     $("demo").hidden = false;
     $("demoTag").textContent = tag || "Demoläge";
-    $("demoClue").textContent = "Ledtråd: " + loc.clue;
+    $("demoClue").textContent = "Ledtråd: " + (l && l.clue ? l.clue : "");
     $("demoNote").textContent = note;
     $("resetView").hidden = true;
   }
@@ -129,7 +173,7 @@
       if (window.google && window.google.maps) return resolve();
       window.__gmReady = resolve;
       window.gm_authFailure = function () {
-        showDemo("Google avvisade API-nyckeln. Kontrollera att Maps JavaScript API är aktiverat och att nyckelns domänbegränsning stämmer.", "Nyckelfel");
+        showDemo("Google avvisade API-nyckeln. Kontrollera att Maps JavaScript API är aktiverat och att nyckelns domänbegränsning stämmer.", "Nyckelfel", clueLocs[viewClue - 1]);
       };
       var s = document.createElement("script");
       s.src = "https://maps.googleapis.com/maps/api/js?key=" + encodeURIComponent(key) +
@@ -140,94 +184,257 @@
     });
   }
 
-  async function initStreetView() {
+  async function showClue(i) {
+    viewClue = i;
+    renderChips();
+    var l = clueLocs[i - 1];
+    var my = ++gm.req;
     var key = (cfg.GOOGLE_MAPS_API_KEY || "").trim();
+    if (!l) return;
     if (!key) {
-      showDemo("Ingen Google-nyckel inlagd i config.js. Lägg in en för att visa riktig Street View.");
+      showDemo("Ingen Google-nyckel inlagd. Lägg in en för att visa riktig Street View.", null, l);
       return;
     }
     try {
-      await loadGoogle(key);
-      var lib = await google.maps.importLibrary("streetView");
+      if (!gm.lib) {
+        await loadGoogle(key);
+        gm.lib = await google.maps.importLibrary("streetView");
+        gm.svc = new gm.lib.StreetViewService();
+      }
       var fromOverride = (params.get("from") || "").split(",").map(Number);
       var from = fromOverride.length === 2 && fromOverride.every(isFinite)
-        ? { dist: fromOverride[0], bearing: fromOverride[1] } : loc.from;
-      var start = destination(loc, from.dist, from.bearing);
-      var res = await new lib.StreetViewService().getPanorama({
+        ? { dist: fromOverride[0], bearing: fromOverride[1] } : l.from;
+      var start = destination(l, from.dist, from.bearing);
+      var res = await gm.svc.getPanorama({
         location: start,
         radius: 250,
-        preference: lib.StreetViewPreference ? lib.StreetViewPreference.NEAREST : undefined,
+        preference: gm.lib.StreetViewPreference ? gm.lib.StreetViewPreference.NEAREST : undefined,
         sources: ["google", "outdoor"] // bara Googles egna utomhusbilder, inga användaruppladdade eller inomhus
       });
+      if (my !== gm.req) return; // spelaren har hunnit byta ledtråd
       var p = res.data.location;
       var pos = { lat: p.latLng.lat(), lng: p.latLng.lng() };
-      var pov = { heading: bearing(pos, loc), pitch: 8 };
-      var pano = new lib.StreetViewPanorama($("pano"), {
-        pano: p.pano,
-        pov: pov,
-        zoom: loc.zoom || 0,
-        addressControl: false,   // dölj adress/plats-text
-        showRoadLabels: false,   // dölj gatunamn
-        fullscreenControl: false,
-        motionTracking: false,
-        enableCloseButton: false,
-        linksControl: !!cfg.ALLOW_MOVE,
-        clickToGo: !!cfg.ALLOW_MOVE,
-        panControl: true,
-        zoomControl: true
-      });
+      var pitchOverride = parseFloat(params.get("pitch"));
+      var pov = { heading: bearing(pos, l), pitch: isFinite(pitchOverride) ? pitchOverride : (l.pitch || 8) };
+      var zoom = l.zoom || 0;
+      if (!gm.pano) {
+        gm.pano = new gm.lib.StreetViewPanorama($("pano"), {
+          pano: p.pano,
+          pov: pov,
+          zoom: zoom,
+          addressControl: false,   // dölj adress/plats-text
+          showRoadLabels: false,   // dölj gatunamn
+          fullscreenControl: false,
+          motionTracking: false,
+          enableCloseButton: false,
+          linksControl: !!cfg.ALLOW_MOVE,
+          clickToGo: !!cfg.ALLOW_MOVE,
+          panControl: true,
+          zoomControl: true
+        });
+      } else {
+        $("pano").hidden = false;
+        gm.pano.setPano(p.pano);
+        gm.pano.setPov(pov);
+        gm.pano.setZoom(zoom);
+        google.maps.event.trigger(gm.pano, "resize");
+      }
+      gm.cur = { pano: p.pano, pov: pov, zoom: zoom };
+      $("pano").hidden = false;
+      $("demo").hidden = true;
       $("resetView").hidden = false;
-      $("resetView").onclick = function () {
-        pano.setPano(p.pano);
-        pano.setPov(pov);
-        pano.setZoom(loc.zoom || 0);
-      };
     } catch (e) {
-      showDemo("Hittade ingen Street View-bild vid platsen, eller Google kunde inte nås (" + (e && e.message ? e.message : "okänt fel") + ").", "Ingen bild");
+      if (my === gm.req) {
+        showDemo("Hittade ingen Street View-bild vid platsen, eller Google kunde inte nås (" + (e && e.message ? e.message : "okänt fel") + ").", "Ingen bild", l);
+      }
     }
   }
 
-  // ---------- Gissningskarta (Leaflet + OpenStreetMap) ----------
+  $("resetView").onclick = function () {
+    if (!gm.pano || !gm.cur) return;
+    gm.pano.setPano(gm.cur.pano);
+    gm.pano.setPov(gm.cur.pov);
+    gm.pano.setZoom(gm.cur.zoom);
+  };
 
-  var map = L.map("map", { worldCopyJump: true, minZoom: 2, zoomControl: true }).setView([30, 10], 2);
+  // ---------- Karta med länder (Leaflet + OpenStreetMap + world-atlas) ----------
+
+  var map = L.map("map", { worldCopyJump: true, minZoom: 2, zoomControl: true, preferCanvas: true }).setView([28, 12], 2);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
 
-  function pinIcon(kind) {
-    return L.divIcon({ className: "", html: '<div class="pin ' + kind + '"></div>', iconSize: [22, 22], iconAnchor: [11, 11] });
+  var STYLE = {
+    base:     { color: "#37474f", weight: 0.7, opacity: 0.55, fill: true, fillColor: "#000000", fillOpacity: 0.001 },
+    hover:    { color: "#1f6f5c", weight: 1.5, opacity: 0.9, fill: true, fillColor: "#1f6f5c", fillOpacity: 0.15 },
+    selected: { color: "#1f6f5c", weight: 2.5, opacity: 1, fill: true, fillColor: "#1f6f5c", fillOpacity: 0.4 },
+    wrong:    { color: "#d9382b", weight: 1.5, opacity: 0.9, fill: true, fillColor: "#d9382b", fillOpacity: 0.25 },
+    right:    { color: "#1f9d55", weight: 2.5, opacity: 1, fill: true, fillColor: "#1f9d55", fillOpacity: 0.45 }
+  };
+  var layersById = {};
+
+  function styleFor(id) {
+    if (state.done && id === puzzle.country) return STYLE.right;
+    if (wrongIds().indexOf(id) !== -1) return STYLE.wrong;
+    if (selected && selected.id === id) return STYLE.selected;
+    return STYLE.base;
+  }
+  function refreshStyles() {
+    Object.keys(layersById).forEach(function (id) {
+      layersById[id].forEach(function (layer) { layer.setStyle(styleFor(id)); });
+    });
   }
 
-  var guessMarker = null;
-  var locked = false;
-
-  map.on("click", function (e) {
-    if (locked) return;
-    var ll = e.latlng.wrap();
-    if (!guessMarker) guessMarker = L.marker(ll, { icon: pinIcon("guess") }).addTo(map);
-    else guessMarker.setLatLng(ll);
+  function selectCountry(id, name) {
+    if (state.done) return;
+    selected = { id: id, name: name };
+    refreshStyles();
     $("guessBtn").disabled = false;
-    $("hint").textContent = "Klicka igen för att flytta markören.";
-  });
-
-  function lockMap() {
-    locked = true;
-    $("map").classList.add("locked");
-    $("guessBtn").hidden = true;
-    $("showResultBtn").hidden = false;
-    $("hint").textContent = "Grön = rätt plats, röd = din gissning.";
+    $("hint").textContent = "Valt land: " + name + ". Tryck på Gissa land.";
   }
 
-  function drawResult(res) {
-    var guess = L.latLng(res.lat, res.lng);
-    var target = L.latLng(loc.lat, loc.lng);
-    if (!guessMarker) guessMarker = L.marker(guess, { icon: pinIcon("guess") }).addTo(map);
-    else guessMarker.setLatLng(guess);
-    L.marker(target, { icon: pinIcon("target") }).addTo(map);
-    L.polyline([guess, target], { color: "#d9382b", weight: 3, dashArray: "6 8" }).addTo(map);
-    map.fitBounds(L.latLngBounds([guess, target]), { padding: [50, 50], maxZoom: 14 });
-    lockMap();
+  function focusAnswer() {
+    var layers = layersById[puzzle.country];
+    if (!layers) return;
+    var b = null;
+    layers.forEach(function (l) { b = b ? b.extend(l.getBounds()) : L.latLngBounds(l.getBounds().getSouthWest(), l.getBounds().getNorthEast()); });
+    if (b) map.fitBounds(b, { padding: [30, 30], maxZoom: 6 });
+  }
+
+  // Länder som korsar datumgränsen (t.ex. Ryssland och Fiji) ger annars långa vågräta linjer över kartan.
+  // Vi gör längdgraderna sammanhängande i varje ring, så att landet ritas som en enda form.
+  function unwrapRing(ring) {
+    var out = [], off = 0, prev = ring[0][0];
+    out.push([prev, ring[0][1]]);
+    for (var i = 1; i < ring.length; i++) {
+      var lng = ring[i][0], d = lng - prev;
+      if (d > 180) off -= 360; else if (d < -180) off += 360;
+      out.push([lng + off, ring[i][1]]);
+      prev = lng;
+    }
+    return out;
+  }
+  function fixAntimeridian(fc) {
+    fc.features = fc.features.filter(function (f) { return String(f.id) !== "010"; }); // utan Antarktis
+    fc.features.forEach(function (f) {
+      var g = f.geometry;
+      if (!g) return;
+      if (g.type === "Polygon") g.coordinates = g.coordinates.map(unwrapRing);
+      else if (g.type === "MultiPolygon") g.coordinates = g.coordinates.map(function (poly) { return poly.map(unwrapRing); });
+    });
+    return fc;
+  }
+
+  var countriesReady = false;
+  function loadCountries() {
+    fetch(ATLAS_URL).then(function (r) { return r.json(); }).then(function (topo) {
+      var fc = fixAntimeridian(topojson.feature(topo, topo.objects.countries));
+      L.geoJSON(fc, {
+        style: function () { return STYLE.base; },
+        onEachFeature: function (f, layer) {
+          var id = f.id !== undefined && f.id !== null ? String(f.id).padStart(3, "0") : "n:" + f.properties.name;
+          var name = countryName(id, f.properties && f.properties.name);
+          (layersById[id] = layersById[id] || []).push(layer);
+          layer.bindTooltip(name, { sticky: true, direction: "top", className: "country-tip" });
+          layer.on("click", function () { selectCountry(id, name); });
+          layer.on("mouseover", function () { if (!state.done && !(selected && selected.id === id) && wrongIds().indexOf(id) === -1) layer.setStyle(STYLE.hover); });
+          layer.on("mouseout", function () { layer.setStyle(styleFor(id)); });
+        }
+      }).addTo(map);
+      countriesReady = true;
+      refreshStyles();
+      if (state.done) focusAnswer();
+    }).catch(function () {
+      $("hint").textContent = "Kunde inte ladda länderkartan. Ladda om sidan.";
+    });
+  }
+
+  // ---------- Ledtrådsfält och knappar ----------
+
+  function renderChips() {
+    var box = $("chips");
+    box.innerHTML = "";
+    for (var i = 1; i <= 5; i++) {
+      (function (n) {
+        var b = document.createElement("button");
+        b.className = "chip";
+        b.textContent = n;
+        var h = historyFor(n);
+        if (h && h.type === "wrong") b.classList.add("wrong");
+        else if (h && h.type === "skip") b.classList.add("skip");
+        else if (h && h.type === "right") b.classList.add("right");
+        if (n === viewClue) b.classList.add("viewing");
+        var unlocked = state.done || n <= state.clue; // när spelet är slut kan man titta på alla fem
+        b.disabled = !unlocked;
+        b.title = unlocked ? "Visa ledtråd " + n : "Låst";
+        b.onclick = function () { if (n !== viewClue) showClue(n); };
+        box.appendChild(b);
+      })(i);
+    }
+    $("worth").textContent = state.done ? "" : "Värt " + fmtNum(POINTS[state.clue - 1]) + " p";
+  }
+
+  function renderButtons() {
+    $("guessBtn").hidden = state.done;
+    $("skipBtn").hidden = state.done || state.clue >= 5;
+    $("showResultBtn").hidden = !state.done;
+    $("guessBtn").disabled = !selected;
+    $("map").classList.toggle("locked", state.done);
+    if (state.done) $("hint").textContent = "Grönt land = rätt svar, rött = dina felgissningar.";
+  }
+
+  // ---------- Spelgång ----------
+
+  function guess() {
+    if (state.done || !selected) return;
+    var clue = state.clue, ok = selected.id === puzzle.country, picked = selected;
+    state.history.push({ clue: clue, type: ok ? "right" : "wrong", id: picked.id, name: picked.name });
+    selected = null;
+    if (ok) {
+      finish(true, POINTS[clue - 1]);
+      return;
+    }
+    if (clue < 5) {
+      state.clue = clue + 1;
+      $("hint").textContent = "Fel: " + picked.name + " är inte rätt. Här är ledtråd " + state.clue + ".";
+      persist(); refreshStyles(); renderButtons(); showClue(state.clue);
+    } else {
+      finish(false, 0);
+    }
+  }
+
+  function skip() {
+    if (state.done || state.clue >= 5) return;
+    state.history.push({ clue: state.clue, type: "skip" });
+    state.clue += 1;
+    selected = null;
+    $("hint").textContent = "Ledtråd " + state.clue + ". Klicka på det land du tror att bilden finns i.";
+    persist(); refreshStyles(); renderButtons(); showClue(state.clue);
+  }
+
+  function finish(correct, score) {
+    state.done = true;
+    state.correct = correct;
+    state.score = score;
+    if (!isTest) {
+      var s = data.stats;
+      s.played += 1;
+      s.totalScore += score;
+      if (correct) {
+        s.streak = (s.lastWinDay === dayNumber - 1) ? s.streak + 1 : 1;
+        s.lastWinDay = dayNumber;
+        s.bestStreak = Math.max(s.bestStreak, s.streak);
+      } else {
+        s.streak = 0;
+      }
+    }
+    persist();
+    refreshStyles();
+    renderButtons();
+    if (countriesReady) focusAnswer();
+    showClue(5);
+    showResult();
   }
 
   // ---------- Resultat ----------
@@ -240,11 +447,13 @@
     $("stBest").textContent = s.bestStreak;
   }
 
-  function shareText(res) {
-    var filled = Math.max(0, Math.min(5, Math.round(res.score / 1000)));
-    var bar = "🟩".repeat(filled) + "⬜".repeat(5 - filled);
-    return "Dagens Plats #" + dayNumber + " 📍\n" + bar + " " + fmtNum(res.score) + " / 5 000\n" +
-      (res.dist < 1 ? "Rakt på!" : "Jag var " + fmtDist(res.dist) + " ifrån.") + "\n" +
+  function shareText() {
+    var boxes = "";
+    for (var i = 1; i <= 5; i++) {
+      var h = historyFor(i);
+      boxes += h ? (h.type === "right" ? "🟩" : h.type === "wrong" ? "🟥" : "⬛") : "⬜";
+    }
+    return "Dagens Plats #" + dayNumber + " 🌍\n" + boxes + " " + fmtNum(state.score) + " poäng\n" +
       location.origin + location.pathname;
   }
 
@@ -259,23 +468,41 @@
       var next = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1);
       var s = Math.max(0, Math.floor((next - n) / 1000));
       var p = function (x) { return String(x).padStart(2, "0"); };
-      $("nextIn").textContent = "Nästa plats om " + p(Math.floor(s / 3600)) + ":" + p(Math.floor(s / 60) % 60) + ":" + p(s % 60);
+      $("nextIn").textContent = "Nästa land om " + p(Math.floor(s / 3600)) + ":" + p(Math.floor(s / 60) % 60) + ":" + p(s % 60);
     }
     tick();
     clearInterval(nextTimer);
     nextTimer = setInterval(tick, 1000);
   }
 
-  function showResult(res) {
-    $("resName").textContent = loc.name;
-    $("resPlace").textContent = loc.place;
-    $("resDist").textContent = fmtDist(res.dist);
-    $("resScore").textContent = fmtNum(res.score);
-    $("resFact").textContent = loc.fact;
+  function showResult() {
+    var foundAt = 0;
+    state.history.forEach(function (h) { if (h.type === "right") foundAt = h.clue; });
+    $("resEyebrow").textContent = state.correct ? "Rätt land!" : "Dagens land";
+    $("resName").textContent = countryName(puzzle.country, "Okänt land");
+    $("resLine").textContent = state.correct
+      ? "Du hittade landet på ledtråd " + foundAt + " av 5."
+      : "Landet hittades inte den här gången.";
+    $("resScore").textContent = fmtNum(state.score);
+    $("resClues").textContent = (state.correct ? foundAt : 5) + " av 5";
+
+    var list = $("resList");
+    list.innerHTML = "";
+    clueLocs.forEach(function (l, i) {
+      if (!l) return;
+      var li = document.createElement("li");
+      if (state.correct && i + 1 === foundAt) li.className = "found";
+      var b = document.createElement("b"); b.textContent = l.name;
+      var w = document.createElement("span"); w.className = "where"; w.textContent = " – " + l.place;
+      var f = document.createElement("span"); f.className = "fact"; f.textContent = l.fact || "";
+      li.appendChild(b); li.appendChild(w); li.appendChild(f);
+      list.appendChild(li);
+    });
+
     renderStats();
     startCountdown();
     $("shareBtn").onclick = function () {
-      var txt = shareText(res), btn = $("shareBtn");
+      var txt = shareText(), btn = $("shareBtn");
       var done = function () { btn.textContent = "Kopierat!"; setTimeout(function () { btn.textContent = "Dela resultat"; }, 1800); };
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, function () { window.prompt("Kopiera:", txt); });
       else window.prompt("Kopiera:", txt);
@@ -283,34 +510,12 @@
     openModal("result");
   }
 
-  function submitGuess() {
-    if (!guessMarker || locked) return;
-    var g = guessMarker.getLatLng();
-    var km = haversineKm({ lat: g.lat, lng: g.lng }, loc);
-    var res = { lat: g.lat, lng: g.lng, dist: km, score: scoreFor(km) };
-
-    if (!isTest) {
-      var s = data.stats;
-      s.streak = (s.lastDay === dayNumber - 1) ? s.streak + 1 : 1;
-      s.bestStreak = Math.max(s.bestStreak, s.streak);
-      s.played += 1;
-      s.totalScore += res.score;
-      s.lastDay = dayNumber;
-      data.results[dayNumber] = res;
-      save(data);
-    }
-    drawResult(res);
-    showResult(res);
-    lastResult = res;
-  }
-
-  var lastResult = null;
-
   // ---------- Start ----------
 
   $("dayLabel").textContent = "#" + dayNumber + (isTest ? " (test)" : "");
-  $("guessBtn").onclick = submitGuess;
-  $("showResultBtn").onclick = function () { if (lastResult) showResult(lastResult); };
+  $("guessBtn").onclick = guess;
+  $("skipBtn").onclick = skip;
+  $("showResultBtn").onclick = showResult;
   $("helpBtn").onclick = function () { openModal("help"); };
 
   document.addEventListener("click", function (e) {
@@ -322,16 +527,18 @@
     if (e.key === "Escape") document.querySelectorAll(".modal").forEach(closeModal);
   });
 
-  initStreetView();
+  if (isLocalHost) window.__dp = { selectCountry: selectCountry, state: state, puzzle: puzzle, shareText: shareText }; // bara för lokal testning
 
-  var saved = !isTest && data.results[dayNumber];
-  if (saved) {
-    lastResult = saved;
-    drawResult(saved);
-    showResult(saved);
+  renderChips();
+  renderButtons();
+  showClue(viewClue);
+  loadCountries();
+
+  if (state.done) {
+    showResult();
   } else if (!data.seenHelp) {
     data.seenHelp = true;
-    save(data);
+    save();
     openModal("help");
   }
 })();

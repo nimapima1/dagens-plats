@@ -1,5 +1,6 @@
 # Lokala och temporära filer
 config.local.js
+_*.html
 .claude/
 .vscode/
 *.log

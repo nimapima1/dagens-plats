@@ -1,6 +1,6 @@
 # Dagens Plats
 
-Ett Street View per dag på ett monument, en byggnad eller en historisk plats. Spelaren klickar på en karta och gissar var det ligger. Poängen beror på avståndet.
+Fem Street View-bilder per dag från olika platser i samma land, från svår till lätt. Spelaren gissar vilket land det är genom att klicka på kartan. Ju tidigare landet hittas, desto fler poäng: 5 000 på bild 1, sedan 4 000, 3 000, 2 000 och 1 000. Bild 5 är landets kända monument.
 
 ## Köra lokalt
 
@@ -8,13 +8,23 @@ Dubbelklicka på `start.bat` (Windows). Det startar en liten lokal server på ht
 
 Spelet fungerar inte om `index.html` öppnas direkt från disk, det behöver en webbserver.
 
-## Inställningar
+## Filer
 
-- `config.js`: startdatum och om spelaren får gå runt i Street View.
+- `config.js`: startdatum, fröet för blandningen och om spelaren får gå runt i Street View.
 - `config.local.js`: din Google Maps-nyckel (finns bara lokalt, se nedan).
-- `locations.js`: listan med platser. Ordningen avgör vilken plats som visas vilken dag.
+- `locations.js`: biblioteket med alla platser (koordinater, startvinkel i Street View, faktatext).
+- `puzzles.js`: dagens pussel. Varje pussel är ett land med fem platser från `locations.js`.
+- `countries.js`: kopplar kartdatans landskoder till tvåbokstavskoder, så att landsnamn blir svenska.
+- `game.js`, `index.html`, `style.css`: själva spelet.
 
 Utan Google-nyckel körs spelet i demoläge med en textledtråd i stället för Street View.
+
+## Lägga till ett pussel
+
+1. Lägg till de platser som saknas i `locations.js`. Testa varje plats vinkel i Street View (se testparametrarna nedan).
+2. Lägg till ett pussel i `puzzles.js` med landets numeriska ISO-kod och fem platsnamn, från svårast till lättast. Plats 5 ska vara landets kända monument.
+
+Landskoder finns i kartdatan (world-atlas) och i `countries.js`, till exempel Sverige = `752`.
 
 ## Google-nyckel
 
@@ -26,24 +36,27 @@ Nyckeln hamnar ändå i klientkoden och blir synlig för alla som besöker den p
 
 ## Publicering
 
-Sajten publiceras automatiskt till GitHub Pages (https://nimapima1.github.io/dagens-plats/) varje gång något skickas till `main`. Flödet ligger i `.github/workflows/pages.yml`.
+Sajten publiceras automatiskt till GitHub Pages (https://dagensplats.nu/) varje gång något skickas till `main`. Flödet ligger i `.github/workflows/pages.yml`.
 
-Google-nyckeln hämtas från GitHub-hemligheten `GOOGLE_MAPS_API_KEY` och skrivs till `config.local.js` under bygget. Byt nyckel med `gh secret set GOOGLE_MAPS_API_KEY` och kör sedan om flödet. Lägg också till `https://nimapima1.github.io/*` som tillåten hänvisare för nyckeln i Google Cloud.
+Google-nyckeln hämtas från GitHub-hemligheten `GOOGLE_MAPS_API_KEY` och skrivs till `config.local.js` under bygget. Byt nyckel med `gh secret set GOOGLE_MAPS_API_KEY` och kör sedan om flödet. Lägg också till sajtens adresser som tillåtna hänvisare för nyckeln i Google Cloud.
 
-## Ordning på platserna
+## Ordning på dagarna
 
-Platserna visas i en blandad ordning som är lika för alla spelare. Ordningen bestäms av `SHUFFLE_SEED` i `config.js`. Ingen plats upprepas förrän hela listan har visats, och sedan blandas den om. Ändra inte fröet efter lansering, då byter alla kommande dagar plats. Sätt `START_DATE` till lanseringsdagen.
+Pusslen visas i en blandad ordning som är lika för alla spelare. Ordningen bestäms av `SHUFFLE_SEED` i `config.js`. Inget pussel upprepas förrän alla har visats, och sedan blandas listan om. Ändra inte fröet efter lansering, då byter alla kommande dagar pussel. Sätt `START_DATE` till lanseringsdagen.
 
-Om du lägger till nya platser i `locations.js` ändras den blandade ordningen för alla dagar som inte hunnit visas. Gör det därför helst före lansering.
+Om du lägger till nya pussel ändras den blandade ordningen för alla dagar som inte hunnit visas.
 
-## Testa en viss plats
+## Testa
 
 Testparametrarna fungerar bara när spelet körs lokalt (`start.bat`, adressen `localhost`). På den publicerade sidan ignoreras de. Statistiken påverkas inte av dem:
 
-- `?dag=3` visar den tredje dagens plats i den blandade ordningen.
-- `?plats=3` visar plats nummer 3 i `locations.js`, oavsett blandning.
+- `?dag=3` visar den tredje dagens pussel i den blandade ordningen.
+- `?plats=3` visar pussel nummer 3 i `puzzles.js`, oavsett blandning.
+- `?bild=12` visar plats nummer 12 i `locations.js` som en enda bild.
+- `?ledtrad=3` börjar på ledtråd 3.
 - `?from=250,90` (avstånd i meter, väderstreck i grader) provar en annan startpunkt i Street View.
+- `?pitch=35` lutar blicken uppåt, till exempel för höga torn.
 
 ## Tekniker
 
-HTML, CSS och JavaScript utan byggsteg. Gissningskartan använder [Leaflet](https://leafletjs.com/) med OpenStreetMap, och Street View kommer från Google Maps JavaScript API.
+HTML, CSS och JavaScript utan byggsteg. Kartan använder [Leaflet](https://leafletjs.com/) med OpenStreetMap, och Street View kommer från Google Maps JavaScript API. Landsgränserna kommer från [world-atlas](https://github.com/topojson/world-atlas) (Natural Earth, public domain) via [jsDelivr](https://www.jsdelivr.com/) och läses med [topojson-client](https://github.com/topojson/topojson-client).

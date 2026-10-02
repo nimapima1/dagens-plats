@@ -28,7 +28,7 @@ jobs:
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         run: |
           mkdir _site
-          cp index.html style.css game.js locations.js config.js _site/
+          cp index.html style.css game.js locations.js puzzles.js countries.js config.js _site/
           if [ -n "$GOOGLE_MAPS_API_KEY" ]; then
             printf 'window.GAME_CONFIG.GOOGLE_MAPS_API_KEY = "%s";\n' "$GOOGLE_MAPS_API_KEY" > _site/config.local.js
           else

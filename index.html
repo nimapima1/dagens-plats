@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dagens Plats</title>
-  <meta name="description" content="Ett Street View per dag. Var ligger monumentet? Klicka på kartan och gissa.">
+  <meta name="description" content="Fem Street View-bilder per dag, från svår till enkel. Vilket land är det?">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="style.css">
@@ -15,6 +15,12 @@
     <span id="dayLabel" class="day"></span>
     <button id="helpBtn" class="icon-btn" aria-label="Så spelar du">?</button>
   </header>
+
+  <div id="clueBar" class="cluebar">
+    <span class="cb-label">Ledtråd</span>
+    <div id="chips" class="chips" role="tablist" aria-label="Ledtrådar"></div>
+    <span id="worth" class="worth"></span>
+  </div>
 
   <main>
     <section id="viewPane" class="pane" aria-label="Street View">
@@ -27,11 +33,12 @@
       <button id="resetView" class="float-btn" hidden>↺ Tillbaka till start</button>
     </section>
 
-    <section id="mapPane" class="pane" aria-label="Gissningskarta">
+    <section id="mapPane" class="pane" aria-label="Karta över länder">
       <div id="map"></div>
       <div class="bar">
-        <span id="hint">Klicka på kartan där du tror att platsen ligger.</span>
-        <button id="guessBtn" class="primary" disabled>Gissa</button>
+        <span id="hint">Klicka på det land du tror att bilden finns i.</span>
+        <button id="skipBtn">Nästa ledtråd</button>
+        <button id="guessBtn" class="primary" disabled>Gissa land</button>
         <button id="showResultBtn" hidden>Visa resultat</button>
       </div>
     </section>
@@ -40,14 +47,15 @@
   <div id="result" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="resName">
     <div class="card">
       <button class="close" data-close aria-label="Stäng">×</button>
-      <p class="eyebrow">Rätt svar</p>
+      <p class="eyebrow" id="resEyebrow">Dagens land</p>
       <h2 id="resName"></h2>
-      <p id="resPlace" class="place"></p>
+      <p id="resLine" class="place"></p>
       <div class="score-row">
-        <div><span id="resDist" class="big"></span><span class="label">från rätt plats</span></div>
-        <div><span id="resScore" class="big"></span><span class="label">av 5 000 poäng</span></div>
+        <div><span id="resScore" class="big"></span><span class="label">poäng</span></div>
+        <div><span id="resClues" class="big"></span><span class="label">ledtrådar</span></div>
       </div>
-      <p id="resFact" class="fact"></p>
+      <p class="eyebrow">Dagens fem platser</p>
+      <ol id="resList" class="places"></ol>
       <div class="stats">
         <div><b id="stPlayed">0</b><span>Spelade</span></div>
         <div><b id="stAvg">0</b><span>Snittpoäng</span></div>
@@ -67,10 +75,11 @@
       <button class="close" data-close aria-label="Stäng">×</button>
       <h2 id="helpTitle">Så spelar du</h2>
       <ol class="howto">
-        <li>Varje dag visas en ny plats i Street View: ett monument, en byggnad eller en historisk plats.</li>
-        <li>Titta dig runt för ledtrådar: språk, skyltar, arkitektur, vegetation.</li>
-        <li>Klicka på kartan där du tror att platsen ligger och tryck <b>Gissa</b>.</li>
-        <li>Du får poäng efter hur nära du hamnar. Max är 5 000. Du har bara en gissning per dag.</li>
+        <li>Varje dag är det ett land, och du får fem Street View-bilder från olika platser i det.</li>
+        <li>Bild 1 är en <b>svår</b> plats. Varje ny bild är lättare, och bild 5 är landets kända monument.</li>
+        <li>Klicka på det land du tror det är och tryck <b>Gissa land</b>. Du kan också gå vidare till nästa ledtråd utan att gissa.</li>
+        <li>Ju tidigare du hittar landet, desto fler poäng: 5 000 för bild 1, sedan 4 000, 3 000, 2 000 och 1 000. En fel gissning visar nästa bild.</li>
+        <li>Du kan gå tillbaka och titta på tidigare bilder när som helst.</li>
       </ol>
       <div class="actions"><button class="primary" data-close>Kör!</button></div>
     </div>
@@ -78,10 +87,12 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
   <script src="config.js"></script>
   <script src="config.local.js"></script><!-- valfri, committas inte: lokala inställningar som nyckeln -->
-
+  <script src="countries.js"></script>
   <script src="locations.js"></script>
+  <script src="puzzles.js"></script>
   <script src="game.js"></script>
 </body>
 </html>
