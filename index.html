@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <title>Dagens Plats</title>
   <meta name="description" content="Fem Street View-bilder per dag, från svår till enkel. Vilket land är det?">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -15,6 +15,12 @@
     <span id="dayLabel" class="day"></span>
     <button id="helpBtn" class="icon-btn" aria-label="Så spelar du">?</button>
   </header>
+
+  <div id="inapp" class="inapp" hidden>
+    <span>Du verkar ha öppnat spelet i en app. Kartan fungerar bäst i din vanliga webbläsare (Chrome eller Safari).</span>
+    <button id="copyLink">Kopiera länk</button>
+    <button id="inappClose" class="x" aria-label="Stäng">×</button>
+  </div>
 
   <div id="clueBar" class="cluebar">
     <span class="cb-label">Ledtråd</span>

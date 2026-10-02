@@ -24,9 +24,14 @@
 
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
+html { overscroll-behavior: none; }  /* hindrar "dra för att stänga/uppdatera" i appars webbläsare */
 body {
   display: flex; flex-direction: column;
+  overflow: hidden; overscroll-behavior: none; touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+  height: 100vh;                  /* reserv för äldre webbläsare */
   height: 100dvh;
+  height: var(--app-h, 100dvh);   /* sätts av game.js till den faktiskt synliga höjden (appars webbläsare ljuger ofta om 100vh) */
   background: var(--bg); color: var(--text);
   font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
@@ -158,6 +163,21 @@ main {
   .bar span { flex: 1 1 100%; min-width: 0; font-size: .85rem; }
   .bar button { flex: 1; }
 }
+
+/* ---- Touch: kartan ska hantera alla gester själv ---- */
+#map, #map .leaflet-container { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.chip, button { -webkit-tap-highlight-color: transparent; }
+
+/* ---- Tips i appars inbyggda webbläsare ---- */
+.inapp {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; font-size: .82rem;
+  background: #3a3220; color: #f4e7b8; border-bottom: 1px solid #5c4f2a;
+}
+.inapp[hidden] { display: none; }
+.inapp span { flex: 1; }
+.inapp button { padding: 5px 10px; font-size: .8rem; background: transparent; color: inherit; border-color: currentColor; }
+.inapp .x { border: 0; font-size: 1.2rem; line-height: 1; padding: 0 4px; }
 
 /* ---- Feedback vid fel gissning ---- */
 .toast {

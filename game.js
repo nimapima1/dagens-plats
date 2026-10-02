@@ -259,7 +259,15 @@
 
   // ---------- Karta med länder (Leaflet + OpenStreetMap + world-atlas) ----------
 
-  var map = L.map("map", { worldCopyJump: true, minZoom: 2, zoomControl: true, preferCanvas: true }).setView([28, 12], 2);
+  // På pekskärmar (särskilt i appars inbyggda webbläsare) fungerar kartan bättre med färre animationer
+  // och större tolerans för att fingret rör sig lite vid ett tryck.
+  var coarse = !!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+  var map = L.map("map", {
+    worldCopyJump: true, minZoom: 2, zoomControl: true, preferCanvas: true,
+    clickTolerance: coarse ? 12 : 3,
+    inertia: !coarse, zoomAnimation: !coarse, fadeAnimation: !coarse, markerZoomAnimation: !coarse,
+    zoomSnap: coarse ? 0.5 : 1, bounceAtZoomLimits: false
+  }).setView([28, 12], 2);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -570,6 +578,37 @@
   });
 
   if (isLocalHost) window.__dp = { selectCountry: selectCountry, state: state, puzzle: puzzle, shareText: shareText, showToast: showToast, feedbackWrong: feedbackWrong }; // bara för lokal testning
+
+  // Håll layout och karta i takt med den verkliga skärmstorleken. Appars webbläsare ändrar höjd när
+  // verktygsfält visas och döljs, och 100vh stämmer ofta inte med det som syns.
+  function syncSize() {
+    document.documentElement.style.setProperty("--app-h", window.innerHeight + "px");
+    map.invalidateSize({ animate: false });
+  }
+  var sizeTimer = null;
+  function scheduleSync() { clearTimeout(sizeTimer); sizeTimer = setTimeout(syncSize, 60); }
+  window.addEventListener("resize", scheduleSync);
+  window.addEventListener("orientationchange", function () { setTimeout(syncSize, 300); });
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", scheduleSync);
+  if (window.ResizeObserver) new ResizeObserver(scheduleSync).observe($("mapPane"));
+  syncSize();
+
+  // Tips när spelet öppnas i en app (Snapchat, Messenger, Instagram, TikTok m.fl.)
+  var inApp = /(FBAN|FBAV|FB_IAB|Instagram|Snapchat|TikTok|musical_ly|Line\/|MicroMessenger|; wv\))/i.test(navigator.userAgent) || params.get("inapp") === "1";
+  var inAppDismissed = false;
+  try { inAppDismissed = sessionStorage.getItem("dp.inapp") === "1"; } catch (e) {}
+  if (inApp && !inAppDismissed) $("inapp").hidden = false;
+  $("inappClose").onclick = function () {
+    $("inapp").hidden = true;
+    try { sessionStorage.setItem("dp.inapp", "1"); } catch (e) {}
+    scheduleSync();
+  };
+  $("copyLink").onclick = function () {
+    var url = location.origin + location.pathname, btn = $("copyLink");
+    var done = function () { btn.textContent = "Kopierad!"; setTimeout(function () { btn.textContent = "Kopiera länk"; }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { window.prompt("Kopiera länken och klistra in den i din webbläsare:", url); });
+    else window.prompt("Kopiera länken och klistra in den i din webbläsare:", url);
+  };
 
   renderChips();
   renderButtons();
