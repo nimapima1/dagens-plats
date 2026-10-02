@@ -26,5 +26,25 @@ window.PUZZLES = [
   {
     country: "840", // USA
     clues: ["Lorraine Motel", "Hoover Dam", "Space Needle", "Brooklyn Bridge", "Lincolnmonumentet"]
+  },
+  {
+    country: "826", // Storbritannien
+    clues: ["Bletchley Park", "Stonehenge", "Edinburgh Castle", "Tower Bridge", "Big Ben (Elizabeth Tower)"]
+  },
+  {
+    country: "276", // Tyskland
+    clues: ["Zeche Zollverein", "Rothenburg ob der Tauber", "Frauenkirche", "Kölner Dom", "Brandenburger Tor"]
+  },
+  {
+    country: "724", // Spanien
+    clues: ["Akvedukten i Segovia", "Plaza de España", "Guggenheimmuseet", "Kungliga slottet i Madrid", "Sagrada Família"]
+  },
+  {
+    country: "036", // Australien
+    clues: ["Parliament House", "Flinders Street Station", "Uluru", "Sydney Harbour Bridge", "Operahuset"]
+  },
+  {
+    country: "124", // Kanada
+    clues: ["Peggy's Cove-fyren", "Château Frontenac", "Parliament Hill", "Niagarafallen", "CN Tower"]
   }
 ];

@@ -379,5 +379,91 @@ window.LOCATIONS = [
     lat: 36.01604, lng: -114.73708, from: { dist: 150, bearing: 330 },
     clue: "En enorm betongdamm i en kanjon som tämjer en stor flod i en öken.",
     fact: "Byggdes 1931–1936 i Black Canyon vid Coloradofloden och är 221 meter hög."
+  },
+
+  // ---- Fler platser: Storbritannien, Tyskland, Spanien, Australien, Kanada ----
+  {
+    name: "Bletchley Park", place: "Buckinghamshire, England",
+    lat: 51.99772, lng: -0.74078, from: { dist: 80, bearing: 200 },
+    clue: "En herrgård med baracker i en park där hemliga kodknäckare arbetade under ett världskrig.",
+    fact: "Här knäckte britterna tyska koder under andra världskriget. Alan Turing var en av dem som arbetade här."
+  },
+  {
+    name: "Zeche Zollverein", place: "Essen, Tyskland",
+    lat: 51.48583, lng: 7.04472, from: { dist: 600, bearing: 0 }, pitch: 20,
+    clue: "En enorm industrianläggning i röd tegel och stål med ett högt hisstorn, tidigare en stor kolgruva.",
+    fact: "Den före detta stenkolsgruvan i Essen stängdes 1986 och är världsarv sedan 2001."
+  },
+  {
+    name: "Rothenburg ob der Tauber", place: "Bayern, Tyskland",
+    lat: 49.37427, lng: 10.18019, from: { dist: 40, bearing: 0 },
+    clue: "En medeltida stad med korsvirkeshus och stadsmur, känd för en gatukorsning med två torn.",
+    fact: "Rothenburg är en av Tysklands bäst bevarade medeltida städer och är känd för den fotograferade gatan Plönlein."
+  },
+  {
+    name: "Frauenkirche", place: "Dresden, Tyskland",
+    lat: 51.05186, lng: 13.74146, from: { dist: 120, bearing: 90 }, pitch: 15,
+    clue: "En barockkyrka med en jättelik stenkupol, återuppbyggd efter att ha rasat samman under ett världskrig.",
+    fact: "Kyrkan förstördes i bombningen av Dresden 1945 och återuppbyggdes. Den invigdes på nytt 2005."
+  },
+  {
+    name: "Akvedukten i Segovia", place: "Segovia, Spanien",
+    lat: 40.94806, lng: -4.11778, from: { dist: 60, bearing: 90 }, pitch: 15,
+    clue: "En romersk akvedukt av granitblock med två rader av valv, byggd utan murbruk mitt i en gammal stad.",
+    fact: "Akvedukten byggdes av romarna omkring år 100 e.Kr. Den är cirka 28 meter hög och byggd utan murbruk."
+  },
+  {
+    name: "Plaza de España", place: "Sevilla, Spanien",
+    lat: 37.37722, lng: -5.98694, from: { dist: 80, bearing: 180 },
+    clue: "Ett enormt halvcirkelformat torg med kakelprydda bänkar och en kanal med broar.",
+    fact: "Torget byggdes till den ibero-amerikanska utställningen 1929 och har en halvcirkelformad byggnad med kanal och broar."
+  },
+  {
+    name: "Guggenheimmuseet", place: "Bilbao, Spanien",
+    lat: 43.26870, lng: -2.93400, from: { dist: 100, bearing: 270 },
+    clue: "Ett museum med böljande metallformer vid en flod i en baskisk stad.",
+    fact: "Museet ritades av Frank Gehry och invigdes 1997. Byggnaden är klädd i titan."
+  },
+  {
+    name: "Kungliga slottet i Madrid", place: "Madrid, Spanien",
+    lat: 40.41790, lng: -3.71430, from: { dist: 100, bearing: 200 },
+    clue: "Ett enormt vitt slott i en huvudstad, som används för ceremonier trots att kungafamiljen bor någon annanstans.",
+    fact: "Slottet är ett av Europas största, med över 3 000 rum, och används mest för statliga ceremonier."
+  },
+  {
+    name: "Parliament House", place: "Canberra, Australien",
+    lat: -35.30820, lng: 149.12440, from: { dist: 300, bearing: 40 }, pitch: 10,
+    clue: "En regeringsbyggnad i en planerad huvudstad, delvis under en gräsbeklädd kulle med en jättelik flaggstång.",
+    fact: "Invigdes 1988 och ligger delvis under en gräskulle, med en 81 meter hög flaggstång av stål."
+  },
+  {
+    name: "Flinders Street Station", place: "Melbourne, Australien",
+    lat: -37.81830, lng: 144.96710, from: { dist: 100, bearing: 0 },
+    clue: "En gul stationsbyggnad med kupol och klockor vid ett stort torg i en storstad på södra halvklotet.",
+    fact: "Stationsbyggnaden från 1910 är ett av Melbournes mest kända landmärken."
+  },
+  {
+    name: "Uluru", place: "Northern Territory, Australien",
+    lat: -25.34440, lng: 131.03690, from: { dist: 1000, bearing: 180 }, pitch: 8,
+    clue: "Ett enormt rött klippblock som reser sig ur en slätt i öknen och är heligt för urbefolkningen.",
+    fact: "Sandstensmonoliten är helig för aboriginerna och ligger i ett världsarv i Australiens inland."
+  },
+  {
+    name: "Peggy's Cove-fyren", place: "Nova Scotia, Kanada",
+    lat: 44.49190, lng: -63.91800, from: { dist: 80, bearing: 270 },
+    clue: "En vit fyr med rött lanternin på kala granitklippor vid en liten fiskeby vid Atlanten.",
+    fact: "Fyren från 1915 på granitklippor är en av Kanadas mest fotograferade fyrar."
+  },
+  {
+    name: "Château Frontenac", place: "Québec, Kanada",
+    lat: 46.81200, lng: -71.20500, from: { dist: 100, bearing: 180 }, pitch: 15,
+    clue: "Ett slottsliknande hotell med gröna kopparstak och torn ovanför en flod i en fransktalande stad.",
+    fact: "Hotellet öppnades 1893 och ligger ovanför Saint Lawrence-floden i gamla Québec."
+  },
+  {
+    name: "Parliament Hill", place: "Ottawa, Kanada",
+    lat: 45.42360, lng: -75.70090, from: { dist: 300, bearing: 200 }, pitch: 15,
+    clue: "Gotiska byggnader med ett högt klocktorn på en kulle ovanför en flod i en tvåspråkig huvudstad.",
+    fact: "Parlamentsbyggnaderna ligger på en kulle över Ottawafloden. Fredstornet är 92 meter högt."
   }
 ];
