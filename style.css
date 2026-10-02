@@ -159,6 +159,63 @@ main {
   .bar button { flex: 1; }
 }
 
+/* ---- Feedback vid fel gissning ---- */
+.toast {
+  position: absolute; left: 50%; top: 64px; transform: translateX(-50%); z-index: 6;
+  display: flex; align-items: center; gap: 12px;
+  max-width: calc(100% - 24px); padding: 12px 18px;
+  border-radius: 14px; border: 2px solid #d9382b;
+  background: rgba(32, 14, 14, .94); color: #fff;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .45);
+  pointer-events: none;
+}
+.toast[hidden] { display: none; }
+.toast.neutral { border-color: #8a949a; background: rgba(25, 30, 34, .94); }
+.toast .t-icon {
+  flex: none; display: grid; place-items: center;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: #d9382b; font-size: 1.25rem; font-weight: 800;
+}
+.toast.neutral .t-icon { background: #6c7780; }
+.toast b { display: block; font-size: 1.05rem; line-height: 1.25; }
+.toast .sub { display: block; font-size: .85rem; opacity: .85; }
+.toast.show { animation: toast-in .3s ease-out, toast-out .4s ease-in 2.6s forwards; }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-14px) scale(.9); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+@keyframes toast-out { to { opacity: 0; transform: translateX(-50%) translateY(-8px); } }
+
+.pane.shake { animation: shake .45s; }
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-6px); }
+  40%, 60% { transform: translateX(6px); }
+}
+.pane.flash-wrong::after {
+  content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none;
+  animation: flash-red .8s ease-out;
+}
+@keyframes flash-red {
+  0%   { box-shadow: inset 0 0 0 6px rgba(217, 56, 43, .95), inset 0 0 90px rgba(217, 56, 43, .6); }
+  100% { box-shadow: inset 0 0 0 0 rgba(217, 56, 43, 0), inset 0 0 0 rgba(217, 56, 43, 0); }
+}
+.chip.pulse { animation: chip-fail .9s ease-out; }
+@keyframes chip-fail {
+  0%   { transform: scale(1.4); box-shadow: 0 0 0 0 rgba(217, 56, 43, .85); }
+  60%  { transform: scale(1);   box-shadow: 0 0 0 12px rgba(217, 56, 43, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 56, 43, 0); }
+}
+.worth.drop { animation: worth-drop 1s ease-out; }
+@keyframes worth-drop {
+  0%   { color: #d9382b; transform: translateY(-8px); opacity: .2; }
+  100% { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast.show, .pane.shake, .pane.flash-wrong::after, .chip.pulse, .worth.drop { animation: none; }
+}
+
 /* ---- Resultatlista ---- */
 .places { margin: 0 0 14px; padding-left: 22px; font-size: .92rem; }
 .places li { margin-bottom: 8px; }

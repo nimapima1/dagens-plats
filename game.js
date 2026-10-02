@@ -384,6 +384,42 @@
     if (state.done) $("hint").textContent = "Grönt land = rätt svar, rött = dina felgissningar.";
   }
 
+  // ---------- Feedback när en ledtråd misslyckas ----------
+
+  var toastTimer = null;
+  function showToast(kind, title, sub) {
+    var t = $("toast");
+    t.className = "toast " + (kind === "wrong" ? "" : "neutral");
+    $("toastIcon").textContent = kind === "wrong" ? "✕" : "→";
+    $("toastTitle").textContent = title;
+    $("toastSub").textContent = sub || "";
+    t.hidden = false;
+    void t.offsetWidth; // starta om animationen
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.hidden = true; t.classList.remove("show"); }, 3100);
+  }
+
+  function restartClass(el, names, ms) {
+    if (!el) return;
+    names.forEach(function (n) { el.classList.remove(n); });
+    void el.offsetWidth;
+    names.forEach(function (n) { el.classList.add(n); });
+    setTimeout(function () { names.forEach(function (n) { el.classList.remove(n); }); }, ms);
+  }
+
+  // Felgissning: ruta över bilden, röd blixt, skakning, pulserande ledtrådssiffra och poäng, blinkande land
+  function feedbackWrong(picked, clue) {
+    var last = clue >= 5;
+    showToast("wrong", "Inte " + picked.name,
+      last ? "Inga fler ledtrådar kvar" : "Ledtråd " + (clue + 1) + " av 5 · nu värt " + fmtNum(POINTS[clue]) + " p");
+    restartClass($("viewPane"), ["shake", "flash-wrong"], 900);
+    restartClass($("chips").children[clue - 1], ["pulse"], 1000);
+    if (!last) restartClass($("worth"), ["drop"], 1100);
+    (layersById[picked.id] || []).forEach(function (l) { l.setStyle({ weight: 5, fillOpacity: 0.65 }); });
+    setTimeout(refreshStyles, 700);
+  }
+
   // ---------- Spelgång ----------
 
   function guess() {
@@ -399,21 +435,26 @@
       state.clue = clue + 1;
       $("hint").textContent = "Fel: " + picked.name + " är inte rätt. Här är ledtråd " + state.clue + ".";
       persist(); refreshStyles(); renderButtons(); showClue(state.clue);
+      feedbackWrong(picked, clue);
     } else {
-      finish(false, 0);
+      finish(false, 0, 1700); // ge spelaren en stund att se vad som hände innan resultatet visas
+      feedbackWrong(picked, clue);
     }
   }
 
   function skip() {
     if (state.done || state.clue >= 5) return;
-    state.history.push({ clue: state.clue, type: "skip" });
+    var from = state.clue;
+    state.history.push({ clue: from, type: "skip" });
     state.clue += 1;
     selected = null;
     $("hint").textContent = "Ledtråd " + state.clue + ". Klicka på det land du tror att bilden finns i.";
     persist(); refreshStyles(); renderButtons(); showClue(state.clue);
+    showToast("skip", "Ledtråd " + from + " hoppades över", "Ledtråd " + state.clue + " av 5 · nu värt " + fmtNum(POINTS[state.clue - 1]) + " p");
+    restartClass($("worth"), ["drop"], 1100);
   }
 
-  function finish(correct, score) {
+  function finish(correct, score, resultDelayMs) {
     state.done = true;
     state.correct = correct;
     state.score = score;
@@ -434,7 +475,8 @@
     renderButtons();
     if (countriesReady) focusAnswer();
     showClue(5);
-    showResult();
+    if (resultDelayMs) setTimeout(showResult, resultDelayMs);
+    else showResult();
   }
 
   // ---------- Resultat ----------
@@ -527,7 +569,7 @@
     if (e.key === "Escape") document.querySelectorAll(".modal").forEach(closeModal);
   });
 
-  if (isLocalHost) window.__dp = { selectCountry: selectCountry, state: state, puzzle: puzzle, shareText: shareText }; // bara för lokal testning
+  if (isLocalHost) window.__dp = { selectCountry: selectCountry, state: state, puzzle: puzzle, shareText: shareText, showToast: showToast, feedbackWrong: feedbackWrong }; // bara för lokal testning
 
   renderChips();
   renderButtons();
