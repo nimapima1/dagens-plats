@@ -46,5 +46,25 @@ window.PUZZLES = [
   {
     country: "124", // Kanada
     clues: ["Peggy's Cove-fyren", "Château Frontenac", "Parliament Hill", "Niagarafallen", "CN Tower"]
+  },
+  {
+    country: "076", // Brasilien
+    clues: ["Teatro Amazonas", "Escadaria Selarón", "Catedral de Brasília", "Pão de Açúcar (Sockertoppen)", "Kristusstatyn (Cristo Redentor)"]
+  },
+  {
+    country: "410", // Sydkorea
+    clues: ["Bukchon Hanok-by", "Dongdaemun Design Plaza", "Lotte World Tower", "N Seoul Tower", "Gwanghwamun"]
+  },
+  {
+    country: "528", // Nederländerna
+    clues: ["Euromast", "Erasmusbron", "Zaanse Schans", "Kinderdijk", "Rijksmuseum"]
+  },
+  {
+    country: "484", // Mexiko
+    clues: ["Teatro Juárez", "Basílica de Guadalupe", "Palacio de Bellas Artes", "Solpyramiden (Teotihuacan)", "Chichén Itzá"]
+  },
+  {
+    country: "356", // Indien
+    clues: ["Mysore Palace", "Hawa Mahal", "Gateway of India", "India Gate", "Taj Mahal"]
   }
 ];

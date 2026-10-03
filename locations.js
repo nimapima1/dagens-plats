@@ -465,5 +465,121 @@ window.LOCATIONS = [
     lat: 45.42360, lng: -75.70090, from: { dist: 300, bearing: 200 }, pitch: 15,
     clue: "Gotiska byggnader med ett högt klocktorn på en kulle ovanför en flod i en tvåspråkig huvudstad.",
     fact: "Parlamentsbyggnaderna ligger på en kulle över Ottawafloden. Fredstornet är 92 meter högt."
+  },
+
+  // ---- Fler platser: Brasilien, Sydkorea, Nederländerna, Mexiko, Indien ----
+  {
+    name: "Teatro Amazonas", place: "Manaus, Brasilien",
+    lat: -3.13030, lng: -60.02330, from: { dist: 60, bearing: 270 }, pitch: 5,
+    clue: "Ett rosa operahus med en kupol av färgade kakelplattor mitt i en stad i regnskogen.",
+    fact: "Operahuset invigdes 1896 under gummiboomen, mitt i Amazonas regnskog."
+  },
+  {
+    name: "Escadaria Selarón", place: "Rio de Janeiro, Brasilien",
+    lat: -22.91529, lng: -43.17878, from: { dist: 50, bearing: 270 }, pitch: 10,
+    clue: "En färgglad trappa klädd med kakelplattor från hela världen, skapad av en enda konstnär.",
+    fact: "Trappan är klädd med kaklar från hela världen och skapades av konstnären Jorge Selarón."
+  },
+  {
+    name: "Catedral de Brasília", place: "Brasília, Brasilien",
+    lat: -15.79840, lng: -47.87560, from: { dist: 100, bearing: 180 }, pitch: 10,
+    clue: "En modernistisk katedral i betong och glas som liknar uppsträckta händer, i en planerad huvudstad.",
+    fact: "Ritades av Oscar Niemeyer och invigdes 1970. Formen liknar händer som sträcker sig mot himlen."
+  },
+  {
+    name: "Pão de Açúcar (Sockertoppen)", place: "Rio de Janeiro, Brasilien",
+    lat: -22.94860, lng: -43.15660, from: { dist: 2200, bearing: 280 }, pitch: 10,
+    clue: "Ett runt granitberg vid en bukt som man tar sig upp på med linbana, i en stad vid havet.",
+    fact: "Granitberget reser sig 396 meter över Guanabarabukten och nås med linbana."
+  },
+  {
+    name: "Bukchon Hanok-by", place: "Seoul, Sydkorea",
+    lat: 37.58260, lng: 126.98300, from: { dist: 60, bearing: 0 },
+    clue: "Ett område med traditionella hus med böjda tegeltak och smala backiga gator mitt i en storstad.",
+    fact: "Området har hundratals traditionella koreanska hus, så kallade hanok, mitt i Seoul."
+  },
+  {
+    name: "Dongdaemun Design Plaza", place: "Seoul, Sydkorea",
+    lat: 37.56650, lng: 127.00920, from: { dist: 100, bearing: 180 }, pitch: 10,
+    clue: "En futuristisk böljande byggnad i silver utan raka vinklar, ritad av en berömd arkitekt.",
+    fact: "Byggnaden ritades av Zaha Hadid och invigdes 2014."
+  },
+  {
+    name: "Lotte World Tower", place: "Seoul, Sydkorea",
+    lat: 37.51260, lng: 127.10260, from: { dist: 400, bearing: 180 }, pitch: 30,
+    clue: "En mycket hög smal skyskrapa som är en av världens högsta, i en asiatisk huvudstad.",
+    fact: "Skyskrapan är 555 meter hög och öppnade 2017. Den är en av världens högsta byggnader."
+  },
+  {
+    name: "N Seoul Tower", place: "Seoul, Sydkorea",
+    lat: 37.55120, lng: 126.98820, from: { dist: 1000, bearing: 180 }, pitch: 30, zoom: 1,
+    clue: "Ett sändartorn högt uppe på ett berg i en storstad, där par sätter lås på stängsel.",
+    fact: "Tornet står på berget Namsan och är cirka 236 meter högt. Det öppnades för allmänheten 1980."
+  },
+  {
+    name: "Euromast", place: "Rotterdam, Nederländerna",
+    lat: 51.90540, lng: 4.46670, from: { dist: 250, bearing: 270 }, pitch: 25,
+    clue: "Ett smalt torn med en rund utsiktsplatta vid en stor hamn i en nordeuropeisk stad.",
+    fact: "Tornet i Rotterdam byggdes 1960 och är 185 meter högt, med utsikt över hamnen."
+  },
+  {
+    name: "Erasmusbron", place: "Rotterdam, Nederländerna",
+    lat: 51.90970, lng: 4.48710, from: { dist: 200, bearing: 180 }, pitch: 15,
+    clue: "En asymmetrisk snedkabelbro med en hög vit pylon över en bred flod i en hamnstad.",
+    fact: "Bron öppnades 1996 och kallas Svanen på grund av sin höga pylon och sina kablar."
+  },
+  {
+    name: "Zaanse Schans", place: "Zaandam, Nederländerna",
+    lat: 52.47500, lng: 4.81800, from: { dist: 100, bearing: 270 },
+    clue: "En by med gröna trähus och väderkvarnar vid en flod nära en storstad.",
+    fact: "Zaanse Schans är ett friluftsmuseum med traditionella väderkvarnar och trähus längs floden Zaan."
+  },
+  {
+    name: "Kinderdijk", place: "Kinderdijk, Nederländerna",
+    lat: 51.88300, lng: 4.63700, from: { dist: 250, bearing: 0 }, zoom: 1,
+    clue: "En rad gamla väderkvarnar längs kanaler i ett lågland som ligger under havsnivån.",
+    fact: "Här står 19 väderkvarnar från 1700-talet. Området är världsarv sedan 1997."
+  },
+  {
+    name: "Rijksmuseum", place: "Amsterdam, Nederländerna",
+    lat: 52.36000, lng: 4.88520, from: { dist: 120, bearing: 90 }, pitch: 10,
+    clue: "Ett stort tegelmuseum med torn och en genomfartsport i en huvudstad, hem åt en berömd målning av nattliga vaktmän.",
+    fact: "Nederländernas nationalmuseum öppnades i den nuvarande byggnaden 1885 och visar bland annat Rembrandts Nattvakten."
+  },
+  {
+    name: "Teatro Juárez", place: "Guanajuato, Mexiko",
+    lat: 21.01820, lng: -101.25730, from: { dist: 70, bearing: 225 }, pitch: 10,
+    clue: "En teater med kolonner och statyer på taket i en färgglad bergsstad med tunnlar.",
+    fact: "Teatern invigdes 1903 och ligger i den färgglada världsarvsstaden Guanajuato."
+  },
+  {
+    name: "Basílica de Guadalupe", place: "Mexico City, Mexiko",
+    lat: 19.48470, lng: -99.11770, from: { dist: 200, bearing: 90 },
+    clue: "En stor modern cirkelformad kyrka som är en av världens mest besökta pilgrimsorter.",
+    fact: "Den nya basilikan från 1976 rymmer upp till 10 000 människor och är en av världens mest besökta pilgrimsorter."
+  },
+  {
+    name: "Palacio de Bellas Artes", place: "Mexico City, Mexiko",
+    lat: 19.43520, lng: -99.14120, from: { dist: 100, bearing: 270 }, pitch: 10,
+    clue: "Ett vitt marmorpalats med en färgad glaskupol i en storstad på hög höjd.",
+    fact: "Konstpalatset är byggt i vit marmor och invigdes 1934."
+  },
+  {
+    name: "Solpyramiden (Teotihuacan)", place: "Teotihuacan, Mexiko",
+    lat: 19.69250, lng: -98.84380, from: { dist: 400, bearing: 270 }, pitch: 10,
+    clue: "En enorm solpyramid längs en lång ceremoniell gata i en forntida stad som fanns före aztekerna.",
+    fact: "Pyramiden är cirka 65 meter hög och en av Amerikas största. Teotihuacan var en storstad redan före aztekerna."
+  },
+  {
+    name: "Mysore Palace", place: "Mysuru, Indien",
+    lat: 12.30520, lng: 76.65520, from: { dist: 150, bearing: 180 }, pitch: 10,
+    clue: "Ett stort kungligt palats med kupoler och bågar i indo-saracenisk stil i en stad i södra Indien.",
+    fact: "Palatset var kungafamiljen Wodeyars residens. Det nuvarande palatset stod klart 1912."
+  },
+  {
+    name: "Hawa Mahal", place: "Jaipur, Indien",
+    lat: 26.92390, lng: 75.82670, from: { dist: 40, bearing: 90 }, pitch: 10,
+    clue: "En rosa sandstensfasad med hundratals små fönster i en stad kallad den rosa staden.",
+    fact: "Vindarnas palats i Jaipur byggdes 1799 och har 953 små fönster."
   }
 ];

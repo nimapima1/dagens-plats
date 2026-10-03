@@ -14,6 +14,11 @@ window.GAME_CONFIG = {
   // Byt tal för att få en annan ordning. Ändra det inte efter lansering, då byter alla dagars platser.
   SHUFFLE_SEED: 22,
 
+  // Hur många pussel (de första i puzzles.js) som varje varv innehåller. Varv 1 = dag 1-10, varv 2 börjar
+  // därefter. Lägg till en siffra när ett varv har börjat, så ändras inte dagar som redan har visats.
+  // Varv utan siffra använder alla pussel som finns i puzzles.js.
+  CYCLE_SIZES: [10, 15],
+
   // Får spelaren förflytta sig i Street View (pilarna på marken)?
   // false = spelaren står still och kan bara titta runt. Svårare, och mer rättvist.
   ALLOW_MOVE: true

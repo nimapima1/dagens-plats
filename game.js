@@ -32,7 +32,15 @@
       return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     };
   }
-  function orderForCycle(n, cycle) {
+  // Varje varv har en fast storlek: de N första pusslen i puzzles.js blandas. CYCLE_SIZES i config.js låser
+  // storleken för varv som redan har börjat, så att nya pussel aldrig ändrar dagar som redan har visats.
+  // Varv utan angiven storlek använder alla pussel som finns.
+  function cycleSize(cycle) {
+    var s = cfg.CYCLE_SIZES && cfg.CYCLE_SIZES[cycle];
+    return Math.max(1, Math.min(s || PUZZLES.length, PUZZLES.length));
+  }
+  function orderForCycle(cycle) {
+    var n = cycleSize(cycle);
     var seed = cfg.SHUFFLE_SEED === undefined ? 2026 : cfg.SHUFFLE_SEED;
     var idx = [], i;
     for (i = 0; i < n; i++) idx.push(i);
@@ -40,17 +48,17 @@
     for (i = n - 1; i > 0; i--) {
       var j = Math.floor(rnd() * (i + 1)), tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp;
     }
-    // Samma pussel får inte komma två dagar i rad när listan börjar om
+    // Samma pussel får inte komma två dagar i rad när ett nytt varv börjar
     if (cycle > 0 && n > 1) {
-      var prevLast = orderForCycle(n, cycle - 1)[n - 1];
+      var prev = orderForCycle(cycle - 1), prevLast = prev[prev.length - 1];
       if (idx[0] === prevLast) { var t = idx[0]; idx[0] = idx[1]; idx[1] = t; }
     }
     return idx;
   }
   function puzzleIndexForDay(day) {
-    var n = PUZZLES.length, d = day - 1;
-    var cycle = Math.floor(d / n), pos = ((d % n) + n) % n;
-    return orderForCycle(n, cycle)[pos];
+    var d = Math.max(0, day - 1), cycle = 0;
+    while (d >= cycleSize(cycle)) { d -= cycleSize(cycle); cycle++; }
+    return orderForCycle(cycle)[d];
   }
 
   // Testparametrar (statistiken påverkas inte). De fungerar BARA när sidan körs lokalt
@@ -577,7 +585,7 @@
     if (e.key === "Escape") document.querySelectorAll(".modal").forEach(closeModal);
   });
 
-  if (isLocalHost) window.__dp = { selectCountry: selectCountry, state: state, puzzle: puzzle, shareText: shareText, showToast: showToast, feedbackWrong: feedbackWrong }; // bara för lokal testning
+  if (isLocalHost) window.__dp = { selectCountry: selectCountry, state: state, puzzle: puzzle, shareText: shareText, showToast: showToast, feedbackWrong: feedbackWrong, puzzleIndexForDay: puzzleIndexForDay }; // bara för lokal testning
 
   // Håll layout och karta i takt med den verkliga skärmstorleken. Appars webbläsare ändrar höjd när
   // verktygsfält visas och döljs, och 100vh stämmer ofta inte med det som syns.

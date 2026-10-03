@@ -42,9 +42,18 @@ Google-nyckeln hämtas från GitHub-hemligheten `GOOGLE_MAPS_API_KEY` och skrivs
 
 ## Ordning på dagarna
 
-Pusslen visas i en blandad ordning som är lika för alla spelare. Ordningen bestäms av `SHUFFLE_SEED` i `config.js`. Inget pussel upprepas förrän alla har visats, och sedan blandas listan om. Ändra inte fröet efter lansering, då byter alla kommande dagar pussel. Sätt `START_DATE` till lanseringsdagen.
+Pusslen visas i en blandad ordning som är lika för alla spelare. Ordningen bestäms av `SHUFFLE_SEED` i `config.js`. Inget pussel upprepas förrän ett helt varv har visats, och sedan blandas listan om. Ändra inte fröet efter lansering, då byter alla kommande dagar pussel. Sätt `START_DATE` till lanseringsdagen.
 
-Om du lägger till nya pussel ändras den blandade ordningen för alla dagar som inte hunnit visas.
+### Lägga till nya länder utan att ändra dagar som redan har visats
+
+Dagarna delas in i varv. Varje varv innehåller ett fast antal pussel, de första N i `puzzles.js`, och blandas för sig. `CYCLE_SIZES` i `config.js` anger N för varje varv, till exempel `[10, 15]`: varv 1 (dag 1–10) använder de 10 första pusslen och varv 2 (dag 11–25) de 15 första. Varv som inte står i listan använder alla pussel som finns.
+
+När du lägger till nya pussel:
+
+1. Lägg dem sist i `puzzles.js`.
+2. Lägg till en siffra i `CYCLE_SIZES` för varje varv som redan har börjat. Det gör att varvet inte ändras mitt i. Siffran för det pågående varvet ska vara oförändrad, och siffran för nästa varv ska vara det antal pussel du vill ha då.
+
+Nya pussel syns därför först i nästa varv, utom om nästa varv inte har börjat än. Då kan du höja siffran för det.
 
 ## Testa
 
