@@ -66,5 +66,25 @@ window.PUZZLES = [
   {
     country: "356", // Indien
     clues: ["Mysore Palace", "Hawa Mahal", "Gateway of India", "India Gate", "Taj Mahal"]
+  },
+  {
+    country: "032", // Argentina
+    clues: ["Cementerio de la Recoleta", "Caminito", "Teatro Colón", "Casa Rosada", "Obelisken"]
+  },
+  {
+    country: "764", // Thailand
+    clues: ["Wat Mahathat i Ayutthaya", "Wat Rong Khun (Vita templet)", "Wat Pho", "Stora palatset", "Wat Arun"]
+  },
+  {
+    country: "792", // Turkiet
+    clues: ["Anıtkabir", "Kappadokien (Göreme)", "Rumeli Hisarı", "Blå moskén", "Hagia Sofia"]
+  },
+  {
+    country: "620", // Portugal
+    clues: ["Ponte 25 de Abril", "Elevador de Santa Justa", "Dom Luís I-bron", "Jerónimosklostret", "Torre de Belém"]
+  },
+  {
+    country: "040", // Österrike
+    clues: ["Melks kloster", "Uhrturm i Graz", "Hohensalzburg", "Schönbrunn", "Stefansdomen"]
   }
 ];

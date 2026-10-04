@@ -581,5 +581,139 @@ window.LOCATIONS = [
     lat: 26.92390, lng: 75.82670, from: { dist: 40, bearing: 90 }, pitch: 10,
     clue: "En rosa sandstensfasad med hundratals små fönster i en stad kallad den rosa staden.",
     fact: "Vindarnas palats i Jaipur byggdes 1799 och har 953 små fönster."
+  },
+
+  // ---- Fler platser: Argentina, Thailand, Turkiet, Portugal, Österrike ----
+  {
+    name: "Cementerio de la Recoleta", place: "Buenos Aires, Argentina",
+    lat: -34.58750, lng: -58.39280, from: { dist: 100, bearing: 270 },
+    clue: "En kyrkogård som ser ut som en liten stad av marmorkapell, där en berömd första dam vilar.",
+    fact: "Kyrkogården är känd för sina påkostade gravkapell. Eva Perón (Evita) vilar här."
+  },
+  {
+    name: "Caminito", place: "Buenos Aires, Argentina",
+    lat: -34.63930, lng: -58.36310, from: { dist: 40, bearing: 270 },
+    clue: "En kort gata med plåthus i skarpa färger och tangodansare i ett hamnkvarter.",
+    fact: "Den färgglada gatan i stadsdelen La Boca är känd för tangon och sina plåthus i starka färger."
+  },
+  {
+    name: "Teatro Colón", place: "Buenos Aires, Argentina",
+    lat: -34.60100, lng: -58.38350, from: { dist: 60, bearing: 0 },
+    clue: "Ett praktfullt operahus i europeisk stil med berömd akustik i en sydamerikansk huvudstad.",
+    fact: "Operahuset invigdes 1908 och räknas till världens bästa för sin akustik."
+  },
+  {
+    name: "Casa Rosada", place: "Buenos Aires, Argentina",
+    lat: -34.60810, lng: -58.37010, from: { dist: 100, bearing: 200 }, pitch: 10,
+    clue: "Ett rosa palats vid ett stort torg där landets president har sitt kansli.",
+    fact: "Det rosa presidentpalatset ligger vid Plaza de Mayo och är känt för sin balkong."
+  },
+  {
+    name: "Wat Mahathat i Ayutthaya", place: "Ayutthaya, Thailand",
+    lat: 14.35700, lng: 100.56760, from: { dist: 60, bearing: 270 },
+    clue: "En tegelruin där ett Buddha-huvud sitter inbäddat i rötterna på ett träd, i en gammal huvudstad.",
+    fact: "Templet är känt för ett sandstenshuvud av Buddha som växt in i trädets rötter. Ayutthaya är världsarv."
+  },
+  {
+    name: "Wat Rong Khun (Vita templet)", place: "Chiang Rai, Thailand",
+    lat: 19.82400, lng: 99.76320, from: { dist: 100, bearing: 270 }, pitch: 10,
+    clue: "Ett skimrande vitt tempel prytt med små speglar och bisarra skulpturer, skapat av en konstnär.",
+    fact: "Det vita templet ritades av konstnären Chalermchai Kositpipat och byggandet började 1997."
+  },
+  {
+    name: "Wat Pho", place: "Bangkok, Thailand",
+    lat: 13.74650, lng: 100.49270, from: { dist: 100, bearing: 90 },
+    clue: "Ett tempel med en enorm liggande Buddha, vid en flod i en storstad, känt för massage.",
+    fact: "Här ligger en 46 meter lång liggande Buddha. Templet räknas också som thaimassagens födelseplats."
+  },
+  {
+    name: "Stora palatset", place: "Bangkok, Thailand",
+    lat: 13.75000, lng: 100.49130, from: { dist: 250, bearing: 0 }, pitch: 25,
+    clue: "Ett kungligt palats med glittrande gyllene spiror och tempel i en asiatisk huvudstad.",
+    fact: "Det kungliga palatset i Bangkok byggdes 1782 och rymmer Smaragdbuddhan."
+  },
+  {
+    name: "Anıtkabir", place: "Ankara, Turkiet",
+    lat: 39.92500, lng: 32.83690, from: { dist: 300, bearing: 90 }, pitch: 10,
+    clue: "Ett monumentalt mausoleum i sten med en lång allé av lejonstatyer, för en republikgrundare.",
+    fact: "Mausoleet för Mustafa Kemal Atatürk, republikens grundare, stod klart 1953."
+  },
+  {
+    name: "Kappadokien (Göreme)", place: "Kappadokien, Turkiet",
+    lat: 38.64310, lng: 34.82890, from: { dist: 600, bearing: 270 }, pitch: 10,
+    clue: "Ett landskap av koniga klippor där människor har huggit ut hem och kyrkor.",
+    fact: "Landskapet är känt för sina sagoliknande klippformationer, så kallade älvskorstenar, och grottbostäder."
+  },
+  {
+    name: "Rumeli Hisarı", place: "Istanbul, Turkiet",
+    lat: 41.08450, lng: 29.05650, from: { dist: 80, bearing: 90 }, pitch: 10,
+    clue: "En medeltida fästning med höga torn vid en smal del av ett sund, byggd inför en belägring.",
+    fact: "Fästningen vid Bosporen byggdes 1451–1452 av sultan Mehmet II inför belägringen av Konstantinopel."
+  },
+  {
+    name: "Blå moskén", place: "Istanbul, Turkiet",
+    lat: 41.00540, lng: 28.97680, from: { dist: 100, bearing: 90 }, pitch: 15,
+    clue: "En moské med sex minareter och blå kakel inuti, mitt emot en gammal kyrka-moské.",
+    fact: "Sultan Ahmed-moskén byggdes 1609–1616 och har sex minareter."
+  },
+  {
+    name: "Ponte 25 de Abril", place: "Lissabon, Portugal",
+    lat: 38.69140, lng: -9.17710, from: { dist: 300, bearing: 0 }, pitch: 10,
+    clue: "En röd hängbro över en bred flodmynning, som liknar en berömd bro i San Francisco.",
+    fact: "Hängbron över Tejo invigdes 1966 och liknar Golden Gate Bridge. Den hette Salazarbron fram till 1974."
+  },
+  {
+    name: "Elevador de Santa Justa", place: "Lissabon, Portugal",
+    lat: 38.71210, lng: -9.13960, from: { dist: 50, bearing: 0 }, pitch: 25,
+    clue: "En gjutjärnshiss i gotisk stil som binder samman två nivåer i en kuperad huvudstad.",
+    fact: "Hissen invigdes 1902 och förbinder de lägre kvarteren med de högre i Lissabon."
+  },
+  {
+    name: "Dom Luís I-bron", place: "Porto, Portugal",
+    lat: 41.13990, lng: -8.60940, from: { dist: 200, bearing: 180 }, pitch: 10,
+    clue: "En järnbro i två nivåer med en stor båge över en flod mellan två stadsdelar i en vinstad.",
+    fact: "Den dubbeldäckade järnbron över floden Douro invigdes 1886."
+  },
+  {
+    name: "Jerónimosklostret", place: "Lissabon, Portugal",
+    lat: 38.69790, lng: -9.20640, from: { dist: 100, bearing: 180 },
+    clue: "Ett rikt ornamenterat kloster i kalksten, byggt för att fira upptäcktsresor.",
+    fact: "Klostret byggdes på 1500-talet i manuelinsk stil och är världsarv sedan 1983. Vasco da Gama är begravd här."
+  },
+  {
+    name: "Torre de Belém", place: "Lissabon, Portugal",
+    lat: 38.69160, lng: -9.21600, from: { dist: 80, bearing: 0 },
+    clue: "Ett litet befäst torn av kalksten vid en flodmynning, vakt över en stor hamn.",
+    fact: "Tornet byggdes 1514–1520 vid Tejos mynning och är världsarv sedan 1983."
+  },
+  {
+    name: "Melks kloster", place: "Melk, Österrike",
+    lat: 48.22760, lng: 15.33320, from: { dist: 200, bearing: 180 }, pitch: 15,
+    clue: "Ett gult barockkloster på en klippa högt över en stor flod.",
+    fact: "Barockklostret ovanför Donau grundades på 1000-talet och byggdes om på 1700-talet."
+  },
+  {
+    name: "Uhrturm i Graz", place: "Graz, Österrike",
+    lat: 47.07586, lng: 15.43747, from: { dist: 300, bearing: 180 }, pitch: 25,
+    clue: "Ett vitt klocktorn på en kulle över en stad, där den korta visaren visar minuterna.",
+    fact: "Klocktornet på Schlossberg är Grazs landmärke. Timvisaren är längre än minutvisaren, så att den syns bättre på avstånd."
+  },
+  {
+    name: "Hohensalzburg", place: "Salzburg, Österrike",
+    lat: 47.79480, lng: 13.04770, from: { dist: 300, bearing: 270 }, pitch: 20,
+    clue: "En enorm medeltida fästning på en kulle ovanför en stad där en berömd tonsättare föddes.",
+    fact: "Fästningen byggdes från 1077 och är en av Europas största bevarade medeltida borgar."
+  },
+  {
+    name: "Schönbrunn", place: "Wien, Österrike",
+    lat: 48.18450, lng: 16.31220, from: { dist: 250, bearing: 0 }, pitch: 5,
+    clue: "Ett gult barockpalats med en enorm trädgård som var kejsarfamiljens sommarresidens.",
+    fact: "Habsburgarnas sommarresidens i Wien har 1 441 rum och är världsarv sedan 1996."
+  },
+  {
+    name: "Stefansdomen", place: "Wien, Österrike",
+    lat: 48.20860, lng: 16.37310, from: { dist: 60, bearing: 270 }, pitch: 25,
+    clue: "En gotisk katedral med ett mosaikmönstrat tak och ett högt torn mitt i en huvudstad.",
+    fact: "Domkyrkan i Wien är känd för sitt mönstrade tegeltak och sitt 136 meter höga södra torn."
   }
 ];
