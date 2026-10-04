@@ -841,5 +841,155 @@ window.LOCATIONS = [
     lat: 64.15030, lng: -21.93270, from: { dist: 100, bearing: 180 }, pitch: 10,
     clue: "Ett konserthus med en fasad av glas i facetterade block vid hamnen i en nordisk huvudstad.",
     fact: "Harpa invigdes 2011 och glasfasaden är skapad tillsammans med konstnären Olafur Eliasson."
+  },
+  {
+    name: "Borgund stavkyrka", place: "Lærdal, Norge",
+    lat: 61.04707, lng: 7.81264, from: { dist: 100, bearing: 270 }, pitch: 5,
+    clue: "En mörk träkyrka med drakhuvuden på taken och en bärande konstruktion av stolpar, byggd på 1100-talet.",
+    fact: "Stavkyrkan i Borgund byggdes omkring år 1180 och är en av Norges bäst bevarade stavkyrkor."
+  },
+  {
+    name: "Trollstigen", place: "Rauma, Norge",
+    lat: 62.45367, lng: 7.66408, from: { dist: 300, bearing: 0 }, pitch: 10,
+    clue: "En smal bergsväg med elva hårnålskurvor som slingrar sig uppför en brant bergssida.",
+    fact: "Trollstigen invigdes 1936 och har elva hårnålskurvor. Vägen är en av Norges mest kända turistvägar."
+  },
+  {
+    name: "Nidarosdomen", place: "Trondheim, Norge",
+    lat: 63.42690, lng: 10.39690, from: { dist: 80, bearing: 270 }, pitch: 20,
+    clue: "En av Nordens största medeltida kyrkor, med en rik västfasad, byggd över en helgonkungs grav.",
+    fact: "Domkyrkan i Trondheim byggdes över kung Olav den heliges grav och påbörjades omkring 1070."
+  },
+  {
+    name: "Operahuset i Oslo", place: "Oslo, Norge",
+    lat: 59.90694, lng: 10.75361, from: { dist: 150, bearing: 270 }, pitch: 10,
+    clue: "Ett vitt marmorhus som liknar ett isflak vid fjorden, med ett lutande tak som man får gå upp på.",
+    fact: "Operahuset invigdes 2008 och taket är klätt med italiensk marmor. Besökare får gå upp på taket."
+  },
+  {
+    name: "Kungliga slottet i Oslo", place: "Oslo, Norge",
+    lat: 59.91722, lng: 10.72750, from: { dist: 200, bearing: 120 }, pitch: 10, zoom: 1,
+    clue: "Ett gult klassicistiskt slott på en kulle i slutet av en lång paradgata i en nordisk huvudstad.",
+    fact: "Slottet stod klart 1849 och byggdes för kung Karl Johan. Karl Johans gate leder ner från slottet genom centrala Oslo."
+  },
+  {
+    name: "Jellingstenarna", place: "Jelling, Danmark",
+    lat: 55.75667, lng: 9.41944, from: { dist: 60, bearing: 90 },
+    clue: "Två runstenar framför en kyrka mellan två stora gravhögar, ibland kallade landets dopattest.",
+    fact: "Den större runstenen restes omkring år 965 av Harald Blåtand och berättar att han gjorde danerna kristna. Platsen är världsarv."
+  },
+  {
+    name: "Kronborg", place: "Helsingör, Danmark",
+    lat: 56.03860, lng: 12.62190, from: { dist: 300, bearing: 90 }, pitch: 5, zoom: 1,
+    clue: "Ett renässansslott vid en trång havsled, som Shakespeare använde som scen för en av sina pjäser.",
+    fact: "Kronborg stod klart 1585 och är världsarv. Slottet vid Öresund är miljön i Shakespeares Hamlet, där det kallas Elsinore."
+  },
+  {
+    name: "Köpenhamns rådhus", place: "Köpenhamn, Danmark",
+    lat: 55.67590, lng: 12.56890, from: { dist: 80, bearing: 0 }, pitch: 20,
+    clue: "Ett rött tegelhus i nationalromantisk stil med ett högt klocktorn vid ett stort torg i en huvudstad.",
+    fact: "Rådhuset invigdes 1905 och tornet är cirka 105 meter högt. Det ligger vid Rådhuspladsen."
+  },
+  {
+    name: "Amalienborg", place: "Köpenhamn, Danmark",
+    lat: 55.68400, lng: 12.59280, from: { dist: 80, bearing: 0 }, pitch: 10,
+    clue: "Fyra likadana palats runt ett åttkantigt torg med en ryttarstaty i mitten, hem för en kungafamilj.",
+    fact: "Amalienborg är kungafamiljens vinterresidens i Köpenhamn. Vaktavlösning sker varje dag klockan 12."
+  },
+  {
+    name: "Nyhavn", place: "Köpenhamn, Danmark",
+    lat: 55.67972, lng: 12.59056, from: { dist: 80, bearing: 270 }, pitch: 5,
+    clue: "En kanal kantad av färgglada hus och gamla segelfartyg, en av en huvudstads mest fotograferade platser.",
+    fact: "Nyhavn anlades på 1670-talet. H.C. Andersen bodde här under flera år."
+  },
+  {
+    name: "Lauterbrunnendalen", place: "Lauterbrunnen, Schweiz",
+    lat: 46.59360, lng: 7.90420, from: { dist: 150, bearing: 90 }, pitch: 20,
+    clue: "En djup U-formad dal med lodräta klippväggar och en liten by, känd för sina många vattenfall.",
+    fact: "Dalen i Berner Oberland har över 70 vattenfall, bland annat Staubbachfallet som är omkring 270 meter högt."
+  },
+  {
+    name: "Bundeshuset", place: "Bern, Schweiz",
+    lat: 46.94660, lng: 7.44400, from: { dist: 100, bearing: 270 }, pitch: 15,
+    clue: "En kupolbyggnad av sandsten vid ett stort torg, där landets regering och parlament sitter.",
+    fact: "Parlamentsbyggnaden i Bern stod klar 1902. Den ligger vid Bundesplatz och har en kupol i mitten."
+  },
+  {
+    name: "Zytglogge", place: "Bern, Schweiz",
+    lat: 46.94800, lng: 7.44770, from: { dist: 60, bearing: 90 }, pitch: 20,
+    clue: "Ett medeltida klocktorn med en astronomisk klocka över en gata i en huvudstad.",
+    fact: "Tornet byggdes på 1200-talet och den astronomiska klockan är från 1530. Gamla stan i Bern är världsarv."
+  },
+  {
+    name: "Kapellbrücke", place: "Luzern, Schweiz",
+    lat: 47.05160, lng: 8.30750, from: { dist: 80, bearing: 90 }, pitch: 5,
+    clue: "En täckt träbro med målade tavlor under taket och ett åttkantigt vattentorn.",
+    fact: "Kapellbron byggdes på 1300-talet och är Europas äldsta täckta träbro. En stor del brann 1993 men byggdes upp igen."
+  },
+  {
+    name: "Matterhorn", place: "Zermatt, Schweiz",
+    lat: 45.97639, lng: 7.65833, from: { dist: 4100, bearing: 67 }, pitch: 10,
+    clue: "Ett pyramidformat berg med en vass topp på gränsen mellan två länder, sett från en bilfri bergsby.",
+    fact: "Matterhorn är 4 478 meter högt och ligger på gränsen mellan Schweiz och Italien. Byn Zermatt nedanför är bilfri."
+  },
+  {
+    name: "Sankta Barbaras katedral", place: "Kutná Hora, Tjeckien",
+    lat: 49.94480, lng: 15.26310, from: { dist: 150, bearing: 0 }, pitch: 20,
+    clue: "En gotisk kyrka med tältliknande tak och flygande strävbågar, byggd av en rik silverstad.",
+    fact: "Kyrkan i Kutná Hora påbörjades 1388 och stod klar först på 1900-talet. Staden växte rik på silvergruvor, och kyrkan är världsarv."
+  },
+  {
+    name: "Karlštejn", place: "Karlštejn, Tjeckien",
+    lat: 49.93944, lng: 14.18806, from: { dist: 300, bearing: 180 }, pitch: 10,
+    clue: "En gotisk borg på en klippa, byggd på 1300-talet för att förvara kejserliga skatter.",
+    fact: "Karl IV lät bygga borgen från 1348 för att förvara kronjuveler och reliker."
+  },
+  {
+    name: "Český Krumlov", place: "Český Krumlov, Tjeckien",
+    lat: 48.81250, lng: 14.31530, from: { dist: 150, bearing: 180 }, pitch: 10,
+    clue: "Ett slott med ett målat rundtorn ovanför en flodslinga i en sydböhmisk stad.",
+    fact: "Slottet är ett av Tjeckiens största och staden är världsarv sedan 1992."
+  },
+  {
+    name: "Pragborgen", place: "Prag, Tjeckien",
+    lat: 50.08988, lng: 14.40009, from: { dist: 150, bearing: 0 }, pitch: 10,
+    clue: "Ett enormt slottsområde med en gotisk katedral innanför murarna, högt över en flod.",
+    fact: "Pragborgen räknas av Guinness världsrekord som världens största sammanhängande slottsområde. Här ligger Sankt Vitus-katedralen."
+  },
+  {
+    name: "Karlsbron", place: "Prag, Tjeckien",
+    lat: 50.08640, lng: 14.41140, from: { dist: 150, bearing: 90 }, pitch: 5,
+    clue: "En gammal stenbro med trettio statyer över en flod, som leder upp mot ett slott.",
+    fact: "Karlsbron byggdes från 1357 under Karl IV och har 30 statyer längs sidorna."
+  },
+  {
+    name: "Dunguaire Castle", place: "Kinvara, Irland",
+    lat: 53.14190, lng: -8.92610, from: { dist: 100, bearing: 0 }, pitch: 5,
+    clue: "Ett slott i form av ett högt tegeltorn på en udde vid en havsvik i väst, där medeltida banketter hålls.",
+    fact: "Dunguaire Castle i Kinvara byggdes omkring 1520 och ligger på en udde vid Galway Bay."
+  },
+  {
+    name: "Rock of Cashel", place: "Cashel, Irland",
+    lat: 52.52000, lng: -7.88900, from: { dist: 200, bearing: 270 }, pitch: 15,
+    clue: "En klippa med ett rundtorn och ett medeltida kapell, där regionens kungar höll hov.",
+    fact: "Klippan var kungasäte i Munster i flera hundra år. Byggnaderna på toppen är från 1100- och 1200-talen."
+  },
+  {
+    name: "Kilmainham Gaol", place: "Dublin, Irland",
+    lat: 53.34190, lng: -6.30990, from: { dist: 80, bearing: 90 }, pitch: 10,
+    clue: "Ett före detta fängelse av grå sten där ledare för ett uppror 1916 avrättades.",
+    fact: "Kilmainham Gaol i Dublin öppnade 1796. Ledarna för påskupproret 1916 avrättades här."
+  },
+  {
+    name: "Trinity College", place: "Dublin, Irland",
+    lat: 53.34380, lng: -6.25460, from: { dist: 80, bearing: 270 }, pitch: 10,
+    clue: "Ett universitet från 1500-talet med en stor stenfasad mot ett torg, där en berömd medeltida bok förvaras.",
+    fact: "Trinity College grundades 1592. Här förvaras Book of Kells, en rikt dekorerad handskrift från omkring år 800."
+  },
+  {
+    name: "Cliffs of Moher", place: "Clare, Irland",
+    lat: 52.97300, lng: -9.43050, from: { dist: 300, bearing: 270 }, pitch: 10,
+    clue: "Branta havsklippar som reser sig över 200 meter över Atlanten på en vild kust i väst.",
+    fact: "Klipporna är cirka 214 meter som högst och sträcker sig ungefär 8 kilometer längs Atlantkusten."
   }
 ];

@@ -106,5 +106,25 @@ window.PUZZLES = [
   {
     country: "352", // Island
     clues: ["Perlan", "Seljalandsfoss", "Þingvellir", "Harpa", "Hallgrímskirkja"]
+  },
+  {
+    country: "578", // Norge
+    clues: ["Borgund stavkyrka", "Trollstigen", "Nidarosdomen", "Operahuset i Oslo", "Kungliga slottet i Oslo"]
+  },
+  {
+    country: "208", // Danmark
+    clues: ["Jellingstenarna", "Kronborg", "Köpenhamns rådhus", "Amalienborg", "Nyhavn"]
+  },
+  {
+    country: "756", // Schweiz
+    clues: ["Lauterbrunnendalen", "Bundeshuset", "Zytglogge", "Kapellbrücke", "Matterhorn"]
+  },
+  {
+    country: "203", // Tjeckien
+    clues: ["Sankta Barbaras katedral", "Karlštejn", "Český Krumlov", "Pragborgen", "Karlsbron"]
+  },
+  {
+    country: "372", // Irland
+    clues: ["Dunguaire Castle", "Rock of Cashel", "Kilmainham Gaol", "Trinity College", "Cliffs of Moher"]
   }
 ];
