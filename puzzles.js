@@ -21,7 +21,7 @@ window.PUZZLES = [
   },
   {
     country: "392", // Japan
-    clues: ["Hōryū-ji", "Shirakawa-go", "Atombombskupolen (Genbaku Dome)", "Tokyo Skytree", "Shibuya-övergången"]
+    clues: ["Matsumoto slott","Shirakawa-go", "Atombombskupolen (Genbaku Dome)", "Tokyo Skytree", "Shibuya-övergången"]
   },
   {
     country: "840", // USA
@@ -86,5 +86,25 @@ window.PUZZLES = [
   {
     country: "040", // Österrike
     clues: ["Melks kloster", "Uhrturm i Graz", "Hohensalzburg", "Schönbrunn", "Stefansdomen"]
+  },
+  {
+    country: "056", // Belgien
+    clues: ["Sint-Romboutskathedraal", "Gravensteen", "Belfort i Brygge", "Grand-Place", "Atomium"]
+  },
+  {
+    country: "246", // Finland
+    clues: ["Tammerfors domkyrka", "Åbo slott","Uspenskikatedralen", "Helsingfors centralstation", "Helsingfors domkyrka"]
+  },
+  {
+    country: "348", // Ungern
+    clues: ["Matthiaskyrkan", "Votivkyrkan i Szeged", "Hjältarnas torg", "Kedjebron", "Parlamentet"]
+  },
+  {
+    country: "616", // Polen
+    clues: ["Spodek", "Malbork slott", "Jasna Góra", "Kulturpalatset", "Wawel"]
+  },
+  {
+    country: "352", // Island
+    clues: ["Perlan", "Seljalandsfoss", "Þingvellir", "Harpa", "Hallgrímskirkja"]
   }
 ];

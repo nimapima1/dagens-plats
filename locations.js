@@ -339,10 +339,10 @@ window.LOCATIONS = [
     fact: "Torget i Siena är format som ett skal. Här hålls hästkapplöpningen Palio två gånger varje sommar."
   },
   {
-    name: "Hōryū-ji", place: "Nara, Japan",
-    lat: 34.61444, lng: 135.73444, from: { dist: 100, bearing: 180 },
-    clue: "Ett buddhistiskt tempelområde med några av världens äldsta bevarade trähus, grundat på 600-talet.",
-    fact: "Templet grundades år 607 och har några av världens äldsta trähus. Det är världsarv sedan 1993."
+    name: "Matsumoto slott", place: "Matsumoto, Japan",
+    lat: 36.23861, lng: 137.96889, from: { dist: 80, bearing: 135 },
+    clue: "Ett svart slott från sent 1500-tal, omgivet av en vallgrav med en röd bro, bland de äldsta slotten som står kvar i landet.",
+    fact: "Slottet är byggt kring år 1600 och kallas Kråkslottet för sina svarta väggar. Det är ett av få japanska slott som aldrig har brunnit ner eller rivits, och tornet är nationalskatt."
   },
   {
     name: "Shirakawa-go", place: "Gifu, Japan",
@@ -715,5 +715,131 @@ window.LOCATIONS = [
     lat: 48.20860, lng: 16.37310, from: { dist: 60, bearing: 270 }, pitch: 25,
     clue: "En gotisk katedral med ett mosaikmönstrat tak och ett högt torn mitt i en huvudstad.",
     fact: "Domkyrkan i Wien är känd för sitt mönstrade tegeltak och sitt 136 meter höga södra torn."
+  },
+  {
+    name: "Sint-Romboutskathedraal", place: "Mechelen, Belgien",
+    lat: 51.02810, lng: 4.47990, from: { dist: 60, bearing: 90 }, pitch: 25,
+    clue: "En gotisk katedral med ett jättelikt torn som aldrig blev klart, i en stad som en gång var huvudstad i Nederländerna.",
+    fact: "Tornet är cirka 97 meter högt och byggdes aldrig färdigt. Det är med på Unescos världsarvslista som ett av Belgiens klocktorn."
+  },
+  {
+    name: "Gravensteen", place: "Gent, Belgien",
+    lat: 51.05710, lng: 3.72080, from: { dist: 60, bearing: 180 }, pitch: 15,
+    clue: "Ett medeltida grevekastell med vallgrav och torn mitt inne i en stad, byggt år 1180.",
+    fact: "Slottet byggdes 1180 av greven av Flandern. Det har senare använts som fängelse och som bomullsspinneri."
+  },
+  {
+    name: "Belfort i Brygge", place: "Brygge, Belgien",
+    lat: 51.20820, lng: 3.22510, from: { dist: 60, bearing: 0 }, pitch: 25,
+    clue: "Ett högt klocktorn vid ett torg med trappgavlar, i en medeltida kanalstad som kallas Nordens Venedig.",
+    fact: "Tornet är drygt 80 meter högt och har ett klockspel. Det står på Grote Markt i Brygge, vars gamla stadskärna är världsarv."
+  },
+  {
+    name: "Grand-Place", place: "Bryssel, Belgien",
+    lat: 50.84670, lng: 4.35250, from: { dist: 40, bearing: 0 }, pitch: 20,
+    clue: "Ett av Europas vackraste torg, kantat av förgyllda gillehus och ett stadshus med ett slankt torn.",
+    fact: "Torget är världsarv sedan 1998. De flesta husen byggdes upp efter ett franskt bombardemang 1695."
+  },
+  {
+    name: "Tammerfors domkyrka", place: "Tammerfors, Finland",
+    lat: 61.50250, lng: 23.76970, from: { dist: 80, bearing: 180 }, pitch: 20,
+    clue: "En nationalromantisk granitkyrka med två torn och ovanliga målningar, i en gammal industristad mellan två sjöar.",
+    fact: "Kyrkan i Tammerfors invigdes 1907 och ritades av Lars Sonck. Inuti finns målningar av Hugo Simberg."
+  },
+  {
+    name: "Åbo slott", place: "Åbo, Finland",
+    lat: 60.43528, lng: 22.22861, from: { dist: 100, bearing: 270 }, pitch: 5,
+    clue: "En medeltida borg vid en hamn, en av landets största, som började byggas på 1280-talet.",
+    fact: "Slottet i Åbo började byggas på 1280-talet. Under den svenska tiden var Åbo Finlands viktigaste stad."
+  },
+  {
+    name: "Uspenskikatedralen", place: "Helsingfors, Finland",
+    lat: 60.16833, lng: 24.96000, from: { dist: 100, bearing: 270 }, pitch: 15,
+    clue: "En röd tegelkatedral med förgyllda kupoler på en klippa vid vattnet, en av Västeuropas största ortodoxa kyrkor.",
+    fact: "Katedralen stod klar 1868 och ligger på Skatudden i Helsingfors."
+  },
+  {
+    name: "Helsingfors centralstation", place: "Helsingfors, Finland",
+    lat: 60.17170, lng: 24.94150, from: { dist: 60, bearing: 180 }, pitch: 10,
+    clue: "En granitbyggnad med fyra stora stenmän som håller lysande klot vid entrén.",
+    fact: "Stationen ritades av Eliel Saarinen och stod klar 1919. Vid huvudentrén står fyra stenmän med lampor."
+  },
+  {
+    name: "Matthiaskyrkan", place: "Budapest, Ungern",
+    lat: 47.50190, lng: 19.03430, from: { dist: 60, bearing: 180 }, pitch: 25,
+    clue: "En gotisk kyrka med ett färgglatt mönstrat tak, där ungerska kungar kröntes, högt över en flod.",
+    fact: "Kyrkan på Budaborgens kulle byggdes på 1200-talet och byggdes om på 1800-talet. Här kröntes bland annat kejsar Franz Josef till Ungerns kung 1867."
+  },
+  {
+    name: "Votivkyrkan i Szeged", place: "Szeged, Ungern",
+    lat: 46.24892, lng: 20.14913, from: { dist: 100, bearing: 180 }, pitch: 25,
+    clue: "En stor tegelkyrka med två höga torn vid ett torg i en stad i söder, byggd som ett löfte efter en stor översvämning.",
+    fact: "Kyrkan i Szeged byggdes 1913–1930 som ett löfte efter översvämningen 1879. Den har två torn och en stor orgel."
+  },
+  {
+    name: "Hjältarnas torg", place: "Budapest, Ungern",
+    lat: 47.51500, lng: 19.07700, from: { dist: 150, bearing: 90 }, pitch: 15,
+    clue: "Ett stort torg med en hög kolonn och en halvcirkel av statyer av ledare och kungar.",
+    fact: "Monumentet byggdes till firandet av tusen år sedan magyarerna kom till regionen. Statyerna föreställer stamhövdingar och kända ungerska kungar."
+  },
+  {
+    name: "Kedjebron", place: "Budapest, Ungern",
+    lat: 47.49880, lng: 19.04350, from: { dist: 150, bearing: 90 }, pitch: 5,
+    clue: "En hängbro över en bred flod med stenlejon vid brofästena, som band samman två stadsdelar.",
+    fact: "Széchenyi lánchíd öppnade 1849 och var den första fasta bron mellan Buda och Pest."
+  },
+  {
+    name: "Spodek", place: "Katowice, Polen",
+    lat: 50.26560, lng: 19.02530, from: { dist: 120, bearing: 180 }, pitch: 5,
+    clue: "En rund arena som liknar ett flygande tefat, i en stad i ett gammalt kolgruvedistrikt.",
+    fact: "Arenan i Katowice stod klar 1971 och används för konserter och idrott. Namnet Spodek betyder fat."
+  },
+  {
+    name: "Malbork slott", place: "Malbork, Polen",
+    lat: 54.03980, lng: 19.02850, from: { dist: 250, bearing: 90 },
+    clue: "Världens största tegelborg, byggd av en tysk riddarorden vid en flod.",
+    fact: "Marienburg började byggas på 1200-talet av Tyska orden och blev ordens huvudsäte. Det är världsarv och räknas som världens största borg till ytan."
+  },
+  {
+    name: "Jasna Góra", place: "Częstochowa, Polen",
+    lat: 50.81280, lng: 19.09690, from: { dist: 250, bearing: 270 }, pitch: 15,
+    clue: "Ett kloster på en kulle med ett högt torn, där en svart madonnaikon är Polens viktigaste pilgrimsmål.",
+    fact: "Klostret i Częstochowa grundades 1382. Den svarta madonnan lockar miljontals pilgrimer varje år."
+  },
+  {
+    name: "Kulturpalatset", place: "Warszawa, Polen",
+    lat: 52.23190, lng: 21.00670, from: { dist: 200, bearing: 270 }, pitch: 25,
+    clue: "En sovjetisk skyskrapa med en spira, som var en gåva från Stalin.",
+    fact: "Kultur- och vetenskapspalatset stod klart 1955 som en gåva från Sovjetunionen. Det är 237 meter högt och står mitt i centrala Warszawa."
+  },
+  {
+    name: "Wawel", place: "Kraków, Polen",
+    lat: 50.05400, lng: 19.93520, from: { dist: 150, bearing: 270 }, pitch: 15,
+    clue: "Ett kungligt slott och en katedral på en kulle vid en flod, där landets kungar kröntes och begravdes.",
+    fact: "Wawelborgen i Kraków var polska kungars residens i flera hundra år. I katedralen kröntes och begravdes de flesta av Polens kungar."
+  },
+  {
+    name: "Perlan", place: "Reykjavik, Island",
+    lat: 64.12920, lng: -21.91940, from: { dist: 100, bearing: 225 }, pitch: 15,
+    clue: "En glaskupol ovanpå stora varmvattentankar på en kulle, med ett museum om landets natur.",
+    fact: "Perlan öppnade 1991 och står på gamla varmvattentankar. Byggnaden har en glaskupol och rymmer ett museum om isländsk natur."
+  },
+  {
+    name: "Seljalandsfoss", place: "Seljalandsfoss, Island",
+    lat: 63.61583, lng: -19.99278, from: { dist: 150, bearing: 180 }, pitch: 15,
+    clue: "Ett smalt vattenfall på sydkusten som man kan gå bakom, nära en stor ringväg runt ön.",
+    fact: "Seljalandsfoss är ungefär 60 meter högt, och man kan gå runt bakom vattenfallet på en stig."
+  },
+  {
+    name: "Þingvellir", place: "Þingvellir, Island",
+    lat: 64.25590, lng: -21.13000, from: { dist: 150, bearing: 0 }, pitch: 5,
+    clue: "En dalgång mellan två kontinentalplattor där landets första parlament möttes år 930.",
+    fact: "Alltinget grundades här år 930 och är en av världens äldsta parlamentariska församlingar. Dalen ligger i gränsen mellan den nordamerikanska och den eurasiska plattan och är världsarv."
+  },
+  {
+    name: "Harpa", place: "Reykjavik, Island",
+    lat: 64.15030, lng: -21.93270, from: { dist: 100, bearing: 180 }, pitch: 10,
+    clue: "Ett konserthus med en fasad av glas i facetterade block vid hamnen i en nordisk huvudstad.",
+    fact: "Harpa invigdes 2011 och glasfasaden är skapad tillsammans med konstnären Olafur Eliasson."
   }
 ];
