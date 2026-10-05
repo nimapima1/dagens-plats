@@ -50,7 +50,7 @@ window.LOCATIONS = [
   },
   {
     name: "Stonehenge", place: "Wiltshire, England",
-    lat: 51.17886, lng: -1.82621, from: { dist: 200, bearing: 100 }, zoom: 2,
+    lat: 51.17886, lng: -1.82621, from: { dist: 100, bearing: 45 }, pitch: 5, zoom: 2,
     clue: "En ring av enorma stenblock på en öppen slätt, rest för flera tusen år sedan av okänd anledning.",
     fact: "De stora stenarna restes omkring 2500 f.Kr. Syftet med monumentet är fortfarande omdiskuterat."
   },
@@ -304,13 +304,13 @@ window.LOCATIONS = [
   // ---- Nya platser för femledtrådsspelet (svåra ledtrådar) ----
   {
     name: "Ales stenar", place: "Kåseberga, Sverige",
-    lat: 55.38278, lng: 14.05611, from: { dist: 300, bearing: 200 },
+    lat: 55.38278, lng: 14.05611, from: { dist: 150, bearing: 270 }, pitch: 15,
     clue: "En skeppsformad ring av stora stenar på en kulle ovanför en strand vid ett inlandshav.",
     fact: "Skeppssättningen har 59 stenar och uppskattas vara ungefär 1 400 år gammal."
   },
   {
     name: "Skogskyrkogården", place: "Stockholm, Sverige",
-    lat: 59.27556, lng: 18.09944, from: { dist: 200, bearing: 0 },
+    lat: 59.27556, lng: 18.09944, from: { dist: 100, bearing: 0 }, pitch: 10,
     clue: "En begravningsplats i en tallskog, ritad av två arkitekter, med en lång stig mot ett kors.",
     fact: "Ritades av Gunnar Asplund och Sigurd Lewerentz och är världsarv sedan 1994. Greta Garbo är begravd här."
   },
@@ -586,7 +586,7 @@ window.LOCATIONS = [
   // ---- Fler platser: Argentina, Thailand, Turkiet, Portugal, Österrike ----
   {
     name: "Cementerio de la Recoleta", place: "Buenos Aires, Argentina",
-    lat: -34.58750, lng: -58.39280, from: { dist: 100, bearing: 270 },
+    lat: -34.58750, lng: -58.39280, from: { dist: 80, bearing: 90 }, pitch: 10,
     clue: "En kyrkogård som ser ut som en liten stad av marmorkapell, där en berömd första dam vilar.",
     fact: "Kyrkogården är känd för sina påkostade gravkapell. Eva Perón (Evita) vilar här."
   },
@@ -640,7 +640,7 @@ window.LOCATIONS = [
   },
   {
     name: "Kappadokien (Göreme)", place: "Kappadokien, Turkiet",
-    lat: 38.64310, lng: 34.82890, from: { dist: 600, bearing: 270 }, pitch: 10,
+    lat: 38.62900, lng: 34.80400, from: { dist: 300, bearing: 0 }, pitch: 10, zoom: 1,
     clue: "Ett landskap av koniga klippor där människor har huggit ut hem och kyrkor.",
     fact: "Landskapet är känt för sina sagoliknande klippformationer, så kallade älvskorstenar, och grottbostäder."
   },
@@ -658,13 +658,13 @@ window.LOCATIONS = [
   },
   {
     name: "Ponte 25 de Abril", place: "Lissabon, Portugal",
-    lat: 38.69140, lng: -9.17710, from: { dist: 300, bearing: 0 }, pitch: 10,
+    lat: 38.69140, lng: -9.17710, from: { dist: 400, bearing: 0 }, pitch: 10,
     clue: "En röd hängbro över en bred flodmynning, som liknar en berömd bro i San Francisco.",
     fact: "Hängbron över Tejo invigdes 1966 och liknar Golden Gate Bridge. Den hette Salazarbron fram till 1974."
   },
   {
     name: "Elevador de Santa Justa", place: "Lissabon, Portugal",
-    lat: 38.71210, lng: -9.13960, from: { dist: 50, bearing: 0 }, pitch: 25,
+    lat: 38.71210, lng: -9.13960, from: { dist: 60, bearing: 90 }, pitch: 25,
     clue: "En gjutjärnshiss i gotisk stil som binder samman två nivåer i en kuperad huvudstad.",
     fact: "Hissen invigdes 1902 och förbinder de lägre kvarteren med de högre i Lissabon."
   },
@@ -706,7 +706,7 @@ window.LOCATIONS = [
   },
   {
     name: "Schönbrunn", place: "Wien, Österrike",
-    lat: 48.18450, lng: 16.31220, from: { dist: 250, bearing: 0 }, pitch: 5,
+    lat: 48.18450, lng: 16.31220, from: { dist: 200, bearing: 45 }, pitch: 5,
     clue: "Ett gult barockpalats med en enorm trädgård som var kejsarfamiljens sommarresidens.",
     fact: "Habsburgarnas sommarresidens i Wien har 1 441 rum och är världsarv sedan 1996."
   },
@@ -718,7 +718,7 @@ window.LOCATIONS = [
   },
   {
     name: "Sint-Romboutskathedraal", place: "Mechelen, Belgien",
-    lat: 51.02810, lng: 4.47990, from: { dist: 60, bearing: 90 }, pitch: 25,
+    lat: 51.02810, lng: 4.47990, from: { dist: 60, bearing: 90 }, pitch: 20, zoom: 2,
     clue: "En gotisk katedral med ett jättelikt torn som aldrig blev klart, i en stad som en gång var huvudstad i Nederländerna.",
     fact: "Tornet är cirka 97 meter högt och byggdes aldrig färdigt. Det är med på Unescos världsarvslista som ett av Belgiens klocktorn."
   },
@@ -736,7 +736,7 @@ window.LOCATIONS = [
   },
   {
     name: "Grand-Place", place: "Bryssel, Belgien",
-    lat: 50.84670, lng: 4.35250, from: { dist: 40, bearing: 0 }, pitch: 20,
+    lat: 50.84670, lng: 4.35250, from: { dist: 40, bearing: 315 }, pitch: 20,
     clue: "Ett av Europas vackraste torg, kantat av förgyllda gillehus och ett stadshus med ett slankt torn.",
     fact: "Torget är världsarv sedan 1998. De flesta husen byggdes upp efter ett franskt bombardemang 1695."
   },
@@ -748,13 +748,13 @@ window.LOCATIONS = [
   },
   {
     name: "Åbo slott", place: "Åbo, Finland",
-    lat: 60.43528, lng: 22.22861, from: { dist: 100, bearing: 270 }, pitch: 5,
+    lat: 60.43528, lng: 22.22861, from: { dist: 100, bearing: 270 }, pitch: 5, zoom: 2,
     clue: "En medeltida borg vid en hamn, en av landets största, som började byggas på 1280-talet.",
     fact: "Slottet i Åbo började byggas på 1280-talet. Under den svenska tiden var Åbo Finlands viktigaste stad."
   },
   {
     name: "Uspenskikatedralen", place: "Helsingfors, Finland",
-    lat: 60.16833, lng: 24.96000, from: { dist: 100, bearing: 270 }, pitch: 15,
+    lat: 60.16833, lng: 24.96000, from: { dist: 100, bearing: 270 }, pitch: 15, zoom: 2,
     clue: "En röd tegelkatedral med förgyllda kupoler på en klippa vid vattnet, en av Västeuropas största ortodoxa kyrkor.",
     fact: "Katedralen stod klar 1868 och ligger på Skatudden i Helsingfors."
   },
@@ -802,7 +802,7 @@ window.LOCATIONS = [
   },
   {
     name: "Jasna Góra", place: "Częstochowa, Polen",
-    lat: 50.81280, lng: 19.09690, from: { dist: 250, bearing: 270 }, pitch: 15,
+    lat: 50.81280, lng: 19.09690, from: { dist: 250, bearing: 270 }, pitch: 15, zoom: 2,
     clue: "Ett kloster på en kulle med ett högt torn, där en svart madonnaikon är Polens viktigaste pilgrimsmål.",
     fact: "Klostret i Częstochowa grundades 1382. Den svarta madonnan lockar miljontals pilgrimer varje år."
   },
@@ -832,7 +832,7 @@ window.LOCATIONS = [
   },
   {
     name: "Þingvellir", place: "Þingvellir, Island",
-    lat: 64.25590, lng: -21.13000, from: { dist: 150, bearing: 0 }, pitch: 5,
+    lat: 64.25590, lng: -21.13000, from: { dist: 300, bearing: 0 }, pitch: 10, zoom: 1,
     clue: "En dalgång mellan två kontinentalplattor där landets första parlament möttes år 930.",
     fact: "Alltinget grundades här år 930 och är en av världens äldsta parlamentariska församlingar. Dalen ligger i gränsen mellan den nordamerikanska och den eurasiska plattan och är världsarv."
   },
@@ -850,8 +850,8 @@ window.LOCATIONS = [
   },
   {
     name: "Trollstigen", place: "Rauma, Norge",
-    lat: 62.45367, lng: 7.66408, from: { dist: 300, bearing: 0 }, pitch: 10,
-    clue: "En smal bergsväg med elva hårnålskurvor som slingrar sig uppför en brant bergssida.",
+    lat: 62.45367, lng: 7.66408, from: { dist: 200, bearing: 0 }, pitch: 15,
+    clue: "En smal bergsväg genom ett högt fjällandskap med en liten sjö och snöfläckade toppar, känd för sina hårnålskurvor.",
     fact: "Trollstigen invigdes 1936 och har elva hårnålskurvor. Vägen är en av Norges mest kända turistvägar."
   },
   {
@@ -868,19 +868,19 @@ window.LOCATIONS = [
   },
   {
     name: "Kungliga slottet i Oslo", place: "Oslo, Norge",
-    lat: 59.91722, lng: 10.72750, from: { dist: 200, bearing: 120 }, pitch: 10, zoom: 1,
+    lat: 59.91722, lng: 10.72750, from: { dist: 200, bearing: 120 }, pitch: 10, zoom: 2,
     clue: "Ett gult klassicistiskt slott på en kulle i slutet av en lång paradgata i en nordisk huvudstad.",
     fact: "Slottet stod klart 1849 och byggdes för kung Karl Johan. Karl Johans gate leder ner från slottet genom centrala Oslo."
   },
   {
-    name: "Jellingstenarna", place: "Jelling, Danmark",
-    lat: 55.75667, lng: 9.41944, from: { dist: 60, bearing: 90 },
-    clue: "Två runstenar framför en kyrka mellan två stora gravhögar, ibland kallade landets dopattest.",
-    fact: "Den större runstenen restes omkring år 965 av Harald Blåtand och berättar att han gjorde danerna kristna. Platsen är världsarv."
+    name: "Roskilde domkyrka", place: "Roskilde, Danmark",
+    lat: 55.64300, lng: 12.08030, from: { dist: 100, bearing: 180 }, pitch: 20,
+    clue: "En tegelkatedral med två spetsiga torn, där nästan alla landets kungar och drottningar vilar.",
+    fact: "Domkyrkan i Roskilde började byggas på 1100-talet och är världsarv. De flesta av Danmarks kungar och drottningar är begravda här."
   },
   {
     name: "Kronborg", place: "Helsingör, Danmark",
-    lat: 56.03860, lng: 12.62190, from: { dist: 300, bearing: 90 }, pitch: 5, zoom: 1,
+    lat: 56.03860, lng: 12.62190, from: { dist: 300, bearing: 90 }, pitch: 5, zoom: 2,
     clue: "Ett renässansslott vid en trång havsled, som Shakespeare använde som scen för en av sina pjäser.",
     fact: "Kronborg stod klart 1585 och är världsarv. Slottet vid Öresund är miljön i Shakespeares Hamlet, där det kallas Elsinore."
   },
@@ -903,10 +903,10 @@ window.LOCATIONS = [
     fact: "Nyhavn anlades på 1670-talet. H.C. Andersen bodde här under flera år."
   },
   {
-    name: "Lauterbrunnendalen", place: "Lauterbrunnen, Schweiz",
-    lat: 46.59360, lng: 7.90420, from: { dist: 150, bearing: 90 }, pitch: 20,
-    clue: "En djup U-formad dal med lodräta klippväggar och en liten by, känd för sina många vattenfall.",
-    fact: "Dalen i Berner Oberland har över 70 vattenfall, bland annat Staubbachfallet som är omkring 270 meter högt."
+    name: "Staubbachfallet", place: "Lauterbrunnen, Schweiz",
+    lat: 46.58965, lng: 7.90550, from: { dist: 200, bearing: 0 }, pitch: 25,
+    clue: "Ett högt, smalt vattenfall som faller från en klippvägg ovanför en liten dalby i en djup, U-formad dal.",
+    fact: "Staubbachfallet vid Lauterbrunnen faller ungefär 270 meter från en klippkant. Dalen i Berner Oberland har över 70 vattenfall."
   },
   {
     name: "Bundeshuset", place: "Bern, Schweiz",
@@ -975,14 +975,14 @@ window.LOCATIONS = [
     fact: "Klippan var kungasäte i Munster i flera hundra år. Byggnaderna på toppen är från 1100- och 1200-talen."
   },
   {
-    name: "Kilmainham Gaol", place: "Dublin, Irland",
-    lat: 53.34190, lng: -6.30990, from: { dist: 80, bearing: 90 }, pitch: 10,
-    clue: "Ett före detta fängelse av grå sten där ledare för ett uppror 1916 avrättades.",
-    fact: "Kilmainham Gaol i Dublin öppnade 1796. Ledarna för påskupproret 1916 avrättades här."
+    name: "Kilkenny Castle", place: "Kilkenny, Irland",
+    lat: 52.65110, lng: -7.24920, from: { dist: 100, bearing: 180 }, pitch: 10,
+    clue: "Ett medeltida slott med en stor park vid en flod i en gammal stad, hem för samma släkt i nästan 600 år.",
+    fact: "Slottet i Kilkenny påbörjades i slutet av 1100-talet. Släkten Butler ägde det från 1391 till 1967."
   },
   {
     name: "Trinity College", place: "Dublin, Irland",
-    lat: 53.34380, lng: -6.25460, from: { dist: 80, bearing: 270 }, pitch: 10,
+    lat: 53.34380, lng: -6.25460, from: { dist: 100, bearing: 270 }, pitch: 10, zoom: 1,
     clue: "Ett universitet från 1500-talet med en stor stenfasad mot ett torg, där en berömd medeltida bok förvaras.",
     fact: "Trinity College grundades 1592. Här förvaras Book of Kells, en rikt dekorerad handskrift från omkring år 800."
   },

@@ -69,6 +69,7 @@
   //   ?ledtrad=3   börjar på ledtråd 3
   //   ?from=250,90 provar en annan startpunkt (avstånd i meter, väderstreck) för alla bilder
   //   ?pitch=35    lutar blicken uppåt (grader) för alla bilder
+  //   ?zoom=1      zoomar in (0 = ingen zoom) för alla bilder
   var isLocalHost = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
   var params = new URLSearchParams(isLocalHost ? location.search : "");
   var testDay = parseInt(params.get("dag"), 10);
@@ -223,8 +224,10 @@
       var p = res.data.location;
       var pos = { lat: p.latLng.lat(), lng: p.latLng.lng() };
       var pitchOverride = parseFloat(params.get("pitch"));
+      var zoomOverride = parseFloat(params.get("zoom"));
       var pov = { heading: bearing(pos, l), pitch: isFinite(pitchOverride) ? pitchOverride : (l.pitch || 8) };
-      var zoom = l.zoom || 0;
+      var zoom = isFinite(zoomOverride) ? zoomOverride : (l.zoom || 0);
+      gm.cur = { pano: p.pano, pov: pov, zoom: zoom }; // sätts före bytet, så att spärren nedan känner igen den nya bilden
       if (!gm.pano) {
         gm.pano = new gm.lib.StreetViewPanorama($("pano"), {
           pano: p.pano,
@@ -240,6 +243,19 @@
           panControl: true,
           zoomControl: true
         });
+        if (!cfg.ALLOW_MOVE) {
+          // Spelaren får snurra och zooma men stå still. Pilknapparna och klick-för-att-gå är avstängda ovan,
+          // men tangentbordets piltangent kan fortfarande byta bild, så ett byte rullas tillbaka här.
+          var lastPov = pov;
+          gm.pano.addListener("pov_changed", function () { lastPov = gm.pano.getPov(); });
+          gm.pano.addListener("pano_changed", function () {
+            if (gm.cur && gm.pano.getPano() !== gm.cur.pano) {
+              var keep = lastPov;
+              gm.pano.setPano(gm.cur.pano);
+              gm.pano.setPov(keep);
+            }
+          });
+        }
       } else {
         $("pano").hidden = false;
         gm.pano.setPano(p.pano);
@@ -247,7 +263,6 @@
         gm.pano.setZoom(zoom);
         google.maps.event.trigger(gm.pano, "resize");
       }
-      gm.cur = { pano: p.pano, pov: pov, zoom: zoom };
       $("pano").hidden = false;
       $("demo").hidden = true;
       $("resetView").hidden = false;
@@ -585,7 +600,7 @@
     if (e.key === "Escape") document.querySelectorAll(".modal").forEach(closeModal);
   });
 
-  if (isLocalHost) window.__dp = { selectCountry: selectCountry, state: state, puzzle: puzzle, shareText: shareText, showToast: showToast, feedbackWrong: feedbackWrong, puzzleIndexForDay: puzzleIndexForDay }; // bara för lokal testning
+  if (isLocalHost) window.__dp = { selectCountry: selectCountry, state: state, puzzle: puzzle, shareText: shareText, showToast: showToast, feedbackWrong: feedbackWrong, puzzleIndexForDay: puzzleIndexForDay, currentPano: function () { return gm.pano ? gm.pano.getPano() : null; } }; // bara för lokal testning
 
   // Håll layout och karta i takt med den verkliga skärmstorleken. Appars webbläsare ändrar höjd när
   // verktygsfält visas och döljs, och 100vh stämmer ofta inte med det som syns.

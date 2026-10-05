@@ -65,6 +65,10 @@ Testparametrarna fungerar bara när spelet körs lokalt (`start.bat`, adressen `
 - `?ledtrad=3` börjar på ledtråd 3.
 - `?from=250,90` (avstånd i meter, väderstreck i grader) provar en annan startpunkt i Street View.
 - `?pitch=35` lutar blicken uppåt, till exempel för höga torn.
+- `?zoom=2` zoomar in, till exempel när platsen syns långt bort.
+
+Spelaren står still i Street View och kan bara snurra och zooma (`ALLOW_MOVE: false` i `config.js`).
+Därför måste varje startbild visa platsen. Justera `from`, `pitch` och `zoom` per plats i `locations.js`.
 
 ## Tekniker
 

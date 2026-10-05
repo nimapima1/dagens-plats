@@ -113,11 +113,11 @@ window.PUZZLES = [
   },
   {
     country: "208", // Danmark
-    clues: ["Jellingstenarna", "Kronborg", "Köpenhamns rådhus", "Amalienborg", "Nyhavn"]
+    clues: ["Roskilde domkyrka", "Kronborg", "Köpenhamns rådhus", "Amalienborg", "Nyhavn"]
   },
   {
     country: "756", // Schweiz
-    clues: ["Lauterbrunnendalen", "Bundeshuset", "Zytglogge", "Kapellbrücke", "Matterhorn"]
+    clues: ["Staubbachfallet", "Bundeshuset", "Zytglogge", "Kapellbrücke", "Matterhorn"]
   },
   {
     country: "203", // Tjeckien
@@ -125,6 +125,6 @@ window.PUZZLES = [
   },
   {
     country: "372", // Irland
-    clues: ["Dunguaire Castle", "Rock of Cashel", "Kilmainham Gaol", "Trinity College", "Cliffs of Moher"]
+    clues: ["Dunguaire Castle", "Rock of Cashel", "Kilkenny Castle", "Trinity College", "Cliffs of Moher"]
   }
 ];

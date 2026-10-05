@@ -20,6 +20,6 @@ window.GAME_CONFIG = {
   CYCLE_SIZES: [10, 30],
 
   // Får spelaren förflytta sig i Street View (pilarna på marken)?
-  // false = spelaren står still och kan bara titta runt. Svårare, och mer rättvist.
-  ALLOW_MOVE: true
+  // false = spelaren står still och kan bara snurra och zooma. Därför måste varje startbild visa platsen.
+  ALLOW_MOVE: false
 };
